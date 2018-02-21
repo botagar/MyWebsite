@@ -1,0 +1,27 @@
+{
+  "check-coverage": true,
+  "per-file": true,
+  "cache": true,
+  "all": true,
+  "lines": 0,
+  "statements": 0,
+  "functions": 0,
+  "branches": 0,
+  "exclude": [
+    "**/*.spec.js",
+    "dist",
+    "src/redux",
+    "**/*.config.js",
+    "src/common/initialState.js"
+  ],
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx"
+  ],
+  "reporter": [
+    "lcov",
+    "html",
+    "text",
+    "text-summary"
+  ]
+}

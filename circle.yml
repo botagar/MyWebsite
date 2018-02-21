@@ -1,0 +1,51 @@
+# https://circleci.com/docs/2.0/workflows/
+
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8.9-stretch-browsers
+      - image: circleci/python:3.7-rc-stretch-browsers
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn build
+      - persist_to_workspace:
+          root: ~/project
+          paths:
+            - dist
+            - node_modules
+      - store_artifacts:
+          path: dist
+
+  test:
+    docker:
+      - image: circleci/node:8.9-stretch-browsers
+      - image: circleci/python:3.7-rc-stretch-browsers
+    steps:
+      - checkout
+      - run: yarn install
+      - run: yarn test
+      - run: yarn coverage
+
+  deploy:
+    docker:
+      - image: circleci/node:8.9-stretch-browsers
+      - image: circleci/python:3.7-rc-stretch-browsers
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/project
+      - run: yarn install
+      - run: yarn deploy
+      
+workflows:
+  version: 2
+  build_test_and_deploy:
+    jobs:
+      - build
+      - test
+      - deploy:
+          requires:
+            - build
+            - test
