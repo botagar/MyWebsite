@@ -1,4 +1,4 @@
-service: react-redux-complete-example
+service: my-website
 
 provider:
   name: aws
@@ -11,7 +11,7 @@ plugins:
 
 custom:
   client:
-    bucketName: reactexample.dev.johngeddes.tech
+    bucketName: dev.johngeddes.tech
     distributionFolder: dist
     indexDocument: index.html
     errorDocument: index.html
