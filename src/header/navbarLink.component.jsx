@@ -23,7 +23,7 @@ const NavImg = ({ image, altText }) => <img src={ image } alt={ altText } />
 const NavigationLink = ({ uri, image, altText, displayText }) =>
   <NavLink to={ uri } activeClassName='active' style={ NavLinkStyle }>
     { image ? <NavImg image={ image } style={ NavImgStyle } altText={ altText } /> : '' }
-    <h2 style={ NavLinkTextStyle }>{ displayText }</h2>
+    <p style={ NavLinkTextStyle }>{ displayText }</p>
   </NavLink>
 
 export default NavigationLink

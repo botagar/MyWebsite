@@ -27,12 +27,12 @@ const NavBarStyle = {
 
 const Header = () =>
 <header style={ HeaderStyle }>
-  <NavLink to={'/'} style={ HeaderLogo }>
+  {/* <NavLink to={'/'} style={ HeaderLogo }>
     <img
       src='/media/images/placeholder.png'
       style={ HeaderLogoImg }
       alt='Logo' />
-  </NavLink>
+  </NavLink> */}
   <NavBar navLinks={ NavConfig } style={ NavBarStyle } />
 </header>
 

@@ -15,6 +15,11 @@ const navLinkConfig = [
     image: ''
   },
   {
+    name: 'Projects',
+    URI: '/projects',
+    image: ''
+  },
+  {
     name: 'Contact',
     URI: '/contact',
     image: ''

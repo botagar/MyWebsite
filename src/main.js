@@ -11,6 +11,7 @@ import configureStore from './redux/configureStore'
 
 import './index.html'
 import './reset.css'
+import './common/styles/common.css'
 
 const preloadedState = window.__PRELOADED_STATE__
 delete window.__PRELOADED_STATE__
