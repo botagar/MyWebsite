@@ -2,12 +2,13 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import { logger } from 'redux-logger'
 
 import githubApi from '../github/github.api.middleware.js'
+import blogApi from '../blog/blog.api.middleware.js'
 import rootReducer from './rootReducer.js'
 
 // For more logging options: https://github.com/evgenyrodionov/redux-logger
 
 const configureStore = (preloadedState, reactDevTools) => {
-  const middlewares = [githubApi, logger]
+  const middlewares = [githubApi, blogApi, logger]
   const middlewareEnhancer = applyMiddleware(...middlewares)
   const enhancers = compose(middlewareEnhancer, reactDevTools || (f => f))
 
