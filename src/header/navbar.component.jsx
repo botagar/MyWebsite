@@ -4,7 +4,6 @@ import _ from 'underscore'
 import NavigationLink from './navbarLink.component.jsx'
 
 const NavBarStyle = {
-  border: '1px solid red',
   flexGrow: '3',
   display: 'flex',
   flexDirection: 'row-reverse'
