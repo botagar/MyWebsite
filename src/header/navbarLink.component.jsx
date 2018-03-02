@@ -2,7 +2,7 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const NavLinkTextStyle = {
-  marginTop: '1.25vh',
+  marginTop: '1.5vh',
   'WebkitTextStroke': '1px black'
 }
 

@@ -1,7 +1,7 @@
 .root-layout {
     display: grid;
     grid-template-columns: [left-margin] 10vw [center-content-col] auto [right-margin] 10vw;
-    grid-template-rows: [header] 25% [center-content-row] auto;
+    grid-template-rows: [header] auto [center-content-row] auto;
 }
 
 h1 {
