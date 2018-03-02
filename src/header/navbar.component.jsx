@@ -4,23 +4,18 @@ import _ from 'underscore'
 import NavigationLink from './navbarLink.component.jsx'
 
 const NavBarStyle = {
-  flexGrow: '3',
-  display: 'flex',
-  flexDirection: 'row-reverse'
+  gridColumnStart: 'center-header-col',
+  gridRowStart: 'header',
 }
 
 const NavLinkContainerStyle = {
-  display: 'inline-block'
+  display: 'flex',
+  justifyContent: 'space-evenly',
 }
 
 const NavLinkStyle = {
   listStyleType: 'none',
   display: 'inline-block',
-  position: 'relative',
-  minWidth: '5vw',
-  maxWidth: '10vw',
-  height: '5vh',
-  textAlign: 'center'
 }
 
 const NavBar = ({ navLinks }) =>

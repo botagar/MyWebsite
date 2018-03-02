@@ -1,7 +1,13 @@
+.root-layout {
+    display: grid;
+    grid-template-columns: [left-margin] 10vw [center-content-col] auto [right-margin] 10vw;
+    grid-template-rows: [header] 25% [center-content-row] auto;
+}
+
 h1 {
-    font-size: 6em
+    font-size: 6em;
 }
 
 h2 {
-    font-size: 1.5em
+    font-size: 1.5em;
 }
