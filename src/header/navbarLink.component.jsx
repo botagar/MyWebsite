@@ -20,7 +20,7 @@ const NavImg = ({image, altText}) => <img src={image} alt={altText} />
 
 const NavigationLink = ({uri, image, altText, displayText}) =>
   <NavLink to={uri} activeClassName='active' style={NavLinkStyle}>
-    { image ? <NavImg image={image} style={NavImgStyle} altText={altText} /> : '' }
+    { image ? <NavImg image={image} altText={altText} style={NavImgStyle} /> : '' }
     <p style={NavLinkTextStyle}>{displayText}</p>
   </NavLink>
 
