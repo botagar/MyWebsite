@@ -2,12 +2,17 @@ import _ from 'underscore'
 import React from 'react'
 import { connect } from 'react-redux'
 
+import contentContainerSize from '../common/styles/contentContainer'
 import { fetchBlogPosts } from './blog.action'
 
-class BlogPage extends React.Component {
-  // https://reactjs.org/docs/react-component.html
+const contentContainerStyle = {
+  ...contentContainerSize,
+  textAlign: 'center',
+  alignItems: 'center'
+}
 
-  constructor(props) {
+class BlogPage extends React.Component {
+  constructor (props) {
     super(props)
     this.state = {
       loading: true,
@@ -19,11 +24,11 @@ class BlogPage extends React.Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this.events.requestLatestPosts()
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps (nextProps) {
     this.setState((prevState, props) => {
       return {
         loading: props.loading,
@@ -33,9 +38,9 @@ class BlogPage extends React.Component {
     })
   }
 
-  render() {
+  render () {
     return (
-      <div>
+      <div style={contentContainerStyle}>
         <p>Bloggo</p>
         { this.state.loading ? <p>Loading</p> : ''}
         { this.state.error ? <p>Error</p> : ''}
@@ -60,7 +65,7 @@ const mapDispatchToEvents = dispatch => {
     requestLatestPosts: (event) => {
       dispatch(fetchBlogPosts())
     }
-   }
+  }
 }
 
-export default connect(mapStateToProps, mapDispatchToEvents)(BlogPage) 
+export default connect(mapStateToProps, mapDispatchToEvents)(BlogPage)

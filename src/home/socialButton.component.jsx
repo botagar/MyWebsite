@@ -6,7 +6,7 @@ const imgStyle = {
 }
 
 const SocialMediaButton = ({ imgSrc, link, alt }) =>
-  <a href={link} aria-label={alt} target="_blank">
+  <a href={link} aria-label={alt} target='_blank'>
     <img src={imgSrc} style={imgStyle} />
   </a>
 

@@ -12,14 +12,17 @@ var reactConfig = {
 
   output: {
     path: DIST,
-    filename: 'app.bundle.js'
+    filename: 'app.bundle.js',
+    sourceMapFilename: '[file].map'
   },
 
   devServer: {
     inline: true, // Hot reloading
     port: 8081, // Port which the Dev Server will listen on
     contentBase: './', // Where the entry to your app is
-    open: true // Open site in new browser tab upon command execution
+    open: true, // Open site in new browser tab upon command execution
+    compress: true,
+    historyApiFallback: true
   },
 
   module: {
