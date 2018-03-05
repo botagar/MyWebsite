@@ -14,7 +14,7 @@ const App = () =>
     <Route key={'root'} path={'/'} component={Home} exact />
     <Route key={'about'} path={'/about'} component={About} exact={true} />
     <Route key={'blog'} path={'/blog'} component={Blog} exact={true} />
-    <Route key={'404'} component={DefaultPage}/>
+    <Route key={'404'} component={DefaultPage} />
   </Switch>
 </div>
 
