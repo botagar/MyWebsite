@@ -16,8 +16,8 @@
     "src/common/initialState.js"
   ],
   "include": [
-    "src/**/*.js",
-    "src/**/*.jsx"
+    "src/*/*.js",
+    "src/*/*.jsx"
   ],
   "reporter": [
     "lcov",
