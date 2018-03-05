@@ -3,12 +3,10 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import contentContainerSize from '../common/styles/contentContainer'
-import { fetchBlogPosts } from './blog.action'
+import { fetchBlogPosts } from './actions'
 
 const contentContainerStyle = {
-  ...contentContainerSize,
-  textAlign: 'center',
-  alignItems: 'center'
+  ...contentContainerSize
 }
 
 class BlogPage extends React.Component {

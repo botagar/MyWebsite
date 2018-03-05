@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import { logger } from 'redux-logger'
 
-import blogApi from '../blog/blog.api.middleware.js'
+import blogApi from '../blog/api.middleware.js'
 import rootReducer from './rootReducer.js'
 
 // For more logging options: https://github.com/evgenyrodionov/redux-logger

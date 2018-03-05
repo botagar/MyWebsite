@@ -6,9 +6,9 @@ import ConfigureStore from 'redux-mock-store'
 import Axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 
-import * as types from './blog.actionTypes'
-import { fetchBlogPosts } from './blog.action'
-import blogApiMiddleware from './blog.api.middleware'
+import * as types from './actionTypes'
+import { fetchBlogPosts } from './actions'
+import blogApiMiddleware from './api.middleware'
 
 // TODO: Extract to a config file of some sort
 const cmsEndpoint = 'https://api.graphcms.com/simple/v1/'
@@ -49,11 +49,10 @@ describe('Blog.Api.Middleware', function () {
   })
 
   it('Should fetch all blog posts with given fields in query', async () => {
-
     await store.dispatch(fetchBlogPosts())
 
     const actions = store.getActions()
-    const successAction = actions.find(action => { return action.type == types.FETCH_BLOGS_SUCCESS})
+    const successAction = actions.find(action => { return action.type === types.FETCH_BLOGS_SUCCESS })
     expect(actions.length).to.eql(2)
     expect(successAction.posts[0]).to.have.property('id')
   })
@@ -65,8 +64,8 @@ describe('Blog.Api.Middleware', function () {
     await store.dispatch(fetchBlogPosts())
 
     const actions = store.getActions()
-    const failedAction = actions.find(action => { return action.type == types.FETCH_BLOGS_FAILED})
-    expect(failedAction).to.exist
+    const failedAction = actions.find(action => { return action.type === types.FETCH_BLOGS_FAILED })
+    expect(failedAction).to.exist // eslint-disable-line
     expect(failedAction.error.code).to.eql('ECONNABORTED')
   })
 
@@ -77,8 +76,8 @@ describe('Blog.Api.Middleware', function () {
     await store.dispatch(fetchBlogPosts())
 
     const actions = store.getActions()
-    const failedAction = actions.find(action => { return action.type == types.FETCH_BLOGS_FAILED})
-    expect(failedAction).to.exist
+    const failedAction = actions.find(action => { return action.type === types.FETCH_BLOGS_FAILED })
+    expect(failedAction).to.exist // eslint-disable-line
     expect(failedAction.error.message).to.contain('Network Error')
   })
 })

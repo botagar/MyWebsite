@@ -11,6 +11,7 @@
     "**/*.spec.js",
     "dist",
     "src/redux",
+    "src/common/styles/*.js",
     "**/*.config.js",
     "src/common/initialState.js"
   ],

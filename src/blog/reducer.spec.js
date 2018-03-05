@@ -2,13 +2,11 @@ import { expect } from 'chai'
 import { describe, it } from 'mocha'
 import deepFreeze from 'deepfreeze'
 
-import * as types from './blog.actionTypes'
-import blogReducer from './blog.reducer'
+import * as types from './actionTypes'
+import blogReducer from './reducer'
 
 describe('Blog.Reducer', function () {
   it('Should do nothing if invalid action', function () {
-    let initialState = { repositories: [] }
-
     let newState = blogReducer(undefined, { type: 'INVALID_ACTION' })
 
     expect(newState).to.eql([])

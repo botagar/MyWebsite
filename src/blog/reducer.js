@@ -1,4 +1,4 @@
-import * as types from './blog.actionTypes'
+import * as types from './actionTypes'
 import update from 'react-addons-update'
 
 const blog = (state = [], action) => {

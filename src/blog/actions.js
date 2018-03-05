@@ -1,4 +1,4 @@
-import * as types from './blog.actionTypes'
+import * as types from './actionTypes'
 
 export const blogPostsFetched = posts => {
   return {

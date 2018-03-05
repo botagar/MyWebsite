@@ -1,11 +1,11 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
-import Header from './header/header.container.jsx'
-import Home from './home/home.component.jsx'
-import Blog from './blog/page.container.jsx'
-import About from './about/about.component.jsx'
-import DefaultPage from './404/page.container.jsx'
+import Header from './header/container.jsx'
+import Home from './home/container.jsx'
+import Blog from './blog/container.jsx'
+import About from './about/container.jsx'
+import DefaultPage from './404/container.jsx'
 
 const App = () =>
 <div className='root-layout'>
