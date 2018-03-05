@@ -5,9 +5,8 @@ const blog = (state = [], action) => {
   switch (action.type) {
     case types.FETCH_BLOGS_START:
       return update(state, {
-        posts: {$set: []},
         loading: {$set: true},
-        error: {$set: false}
+        error: {$set: ''}
       })
     case types.FETCH_BLOGS_SUCCESS:
       return update(state, {
@@ -18,7 +17,7 @@ const blog = (state = [], action) => {
       return update(state, {
         posts: {$set: []},
         loading: {$set: false},
-        error: {$set: true}
+        error: {$set: action.error}
       })
     default:
       return state
