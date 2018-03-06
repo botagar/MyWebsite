@@ -1,5 +1,6 @@
 var webpack = require('webpack')
 var path = require('path')
+var nodeExternals = require('webpack-node-externals')
 
 var DIST = path.resolve(__dirname, 'dist')
 
@@ -83,6 +84,7 @@ var reactConfig = {
 
 var bffConfig = {
   target: 'node',
+  externals: [nodeExternals()],
   mode: 'development',
 
   node: {
@@ -90,6 +92,7 @@ var bffConfig = {
   },
 
   entry: [
+    'babel-polyfill',
     './src/server/server.js'
   ],
 
@@ -128,6 +131,8 @@ var bffConfig = {
           {
             loader: 'file-loader',
             options: {
+              name: '[name].[ext]',
+              outputPath: 'media/images',
               emitFile: false
             }
           }

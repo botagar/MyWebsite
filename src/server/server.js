@@ -1,3 +1,4 @@
+import 'babel-polyfill'
 import fs from 'mz/fs'
 import path from 'path'
 import Express from 'express'
@@ -18,7 +19,7 @@ const port = 3000
 app.use('/dist', Express.static('dist'))
 
 // This is fired every time the server side receives a request
-app.use(handleRender)
+app.use('/', handleRender)
 
 // We are going to fill these out in the sections to follow
 async function handleRender (req, res) {
