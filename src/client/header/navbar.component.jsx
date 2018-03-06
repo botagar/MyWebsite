@@ -1,37 +1,37 @@
 import React from 'react'
 import _ from 'underscore'
-import NavigationLink from './navbarLink.component.jsx'
+import styled from 'styled-components'
 
-const NavBarStyle = {
-  gridColumnStart: 'center-header-col',
-  gridRowStart: 'header'
-}
-
-const NavLinkContainerStyle = {
-  display: 'flex',
-  justifyContent: 'space-evenly'
-}
-
-const NavLinkStyle = {
-  listStyleType: 'none',
-  display: 'inline-block'
-}
+import NavLink from './navLink.component.jsx'
 
 const NavBar = ({navLinks}) =>
-  <div className='nav' style={NavBarStyle}>
-    <ul className='nav-links' style={NavLinkContainerStyle}>
+  <NavBarInGrid>
+    <NavLinks>
       {
         _.map(navLinks, navLinkInfo => {
-          return <li key={navLinkInfo.name} style={NavLinkStyle}>
-            <NavigationLink
+          return <NavLinkContainer key={navLinkInfo.name}>
+            <NavLink
               uri={navLinkInfo.URI}
               image={navLinkInfo.image}
               displayText={navLinkInfo.name}
               altText={'placeholder alt text'} />
-          </li>
+          </NavLinkContainer>
         })
       }
-    </ul>
-  </div>
+    </NavLinks>
+  </NavBarInGrid>
+
+const NavBarInGrid = styled.div`
+  grid-column: center-header-col / span 1
+  grid-row: header / span 1
+`
+const NavLinks = styled.ul`
+  display: flex
+  justify-content: space-evenly
+`
+const NavLinkContainer = styled.li`
+  list-style-type: none
+  display: inline-block
+`
 
 export default NavBar

@@ -1,42 +1,37 @@
 import React from 'react'
+import styled from 'styled-components'
 
-import contentContainerSize from '../common/styles/contentContainer'
+import ContentContainer from '../common/styles/contentContainer'
 import SocialMediaButton from './socialButton.component.jsx'
 
 import linkedInIcon from '../../../media/images/In-2C-128px-TM.png'
 import githubIcon from '../../../media/images/GitHub-Mark-120px-plus.png'
 import twitterIcon from '../../../media/images/Twitter_Logo_WhiteOnBlue.png'
 
-const contentContainerStyle = {
-  ...contentContainerSize,
-  textAlign: 'center',
-  alignItems: 'center'
-}
-
-const contentStyle = {
-}
-
-const headingStyle = {
-  marginBottom: '5vh'
-}
-
-const subHeadingStyle = {
-  marginBottom: '5vh'
-}
-
 const Home = (props) =>
-  <section style={contentContainerStyle}>
-    <div style={contentStyle}>
-      <h1 style={headingStyle}>John A. Geddes</h1>
-      <h2 style={subHeadingStyle}>Developer | Infrastructure | Automation</h2>
+  <MainContentContainer>
+    <div>
+      <Title>John A. Geddes</Title>
+      <SubTitle>Developer | Infrastructure | Automation</SubTitle>
       <SocialMediaButton imgSrc={linkedInIcon} link='https://www.linkedin.com/in/john-geddes-43835467/' alt='Find me on Linked In' />
       <SocialMediaButton imgSrc={githubIcon} link='https://github.com/botagar/' alt='Follow me on Github' />
       <SocialMediaButton imgSrc={twitterIcon} link='https://twitter.com/91Geddes' alt='Follow me on Twitter' />
     </div>
-  </section>
+  </MainContentContainer>
 
 Home.propTypes = {
   // Import Proptypes to start asserting props (import PropTypes from 'prop-types')
 }
+
+const MainContentContainer = ContentContainer.extend`
+  text-align: center
+  align-items: center
+`
+const Title = styled.h1`
+  margin-bottom: 5vh
+`
+const SubTitle = styled.h2`
+  margin-bottom: 5vh
+`
 
 export default Home

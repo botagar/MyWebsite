@@ -8,7 +8,8 @@ var DIST = path.resolve(__dirname, 'dist')
 
 var reactConfig = {
   mode: 'development',
-
+  externals: [nodeExternals()],
+  
   entry: [
     'react-hot-loader/patch',
     './src/client/main.js'

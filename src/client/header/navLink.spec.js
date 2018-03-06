@@ -4,7 +4,7 @@ import Adapter from 'enzyme-adapter-react-16'
 import { expect } from 'chai'
 import { describe, it } from 'mocha'
 
-import NavbarLink from './navbarLink.component.jsx'
+import NavbarLink from './navLink.component.jsx'
 
 Enzyme.configure({ adapter: new Adapter() })
 
