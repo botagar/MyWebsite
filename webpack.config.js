@@ -3,7 +3,11 @@ var path = require('path')
 
 var DIST = path.resolve(__dirname, 'dist')
 
+// TODO: Refactor out module section to be reused between client and server configs
+
 var reactConfig = {
+  mode: 'development',
+
   entry: [
     'react-hot-loader/patch',
     './src/main.js'
@@ -25,19 +29,49 @@ var reactConfig = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.html$/,
-        loader: 'file-loader?name=[name].[ext]'
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }
+          }
+        ]
       },
       {
         test: /\.css$/,
-        loader: 'file-loader?name=[name].[ext]'
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(?:jpg|gif|png)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'media/images'
+            }
+          }
+        ]
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: [
+          {
+            loader: 'babel-loader'
+          }
+        ]
       }
     ]
   },
@@ -49,6 +83,7 @@ var reactConfig = {
 
 var bffConfig = {
   target: 'node',
+  mode: 'development',
 
   node: {
     __dirname: false
@@ -64,19 +99,48 @@ var bffConfig = {
   },
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.html$/,
-        loader: 'file-loader?name=[name].[ext]'
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }
+          }
+        ]
       },
       {
         test: /\.css$/,
-        loader: 'file-loader?name=[name].[ext]'
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]'
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(?:jpg|gif|png)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              emitFile: false
+            }
+          }
+        ]
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel-loader'
+        use: [
+          {
+            loader: 'babel-loader'
+          }
+        ]
       }
     ]
   }

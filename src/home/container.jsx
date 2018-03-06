@@ -3,6 +3,8 @@ import React from 'react'
 import contentContainerSize from '../common/styles/contentContainer'
 import SocialMediaButton from './socialButton.component.jsx'
 
+import '../../media/images/forrest-in-morning.jpg'
+
 const contentContainerStyle = {
   ...contentContainerSize,
   textAlign: 'center',
