@@ -10,7 +10,7 @@
     "serve": "webpack-dev-server",
     "serve-bff": "node ./dist/server.bundle.js",
     "lint": "standard src/**/**",
-    "lint-fix": "standard —-fix src/**/**",
+    "lint-fix": "standard --fix src/**/**",
     "cleanup": "rm -rf ./dist ./coverage ./.nyc_output ./node_modules; unset AWS_ACCESS_KEY_ID; unset AWS_SECRET_ACCESS_KEY;",
     "deploy": "serverless client deploy"
   },
@@ -73,5 +73,11 @@
     "webpack": "4.1.0",
     "webpack-dev-server": "3.1.0",
     "webpack-cli": "^2.0.10"
+  },
+  "standard": {
+    "ignore": [
+      "src/**/*.html",
+      "src/**/*.css"
+    ]
   }
 }

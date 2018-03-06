@@ -8,14 +8,14 @@ import About from './about/container.jsx'
 import DefaultPage from './404/container.jsx'
 
 const App = () =>
-<div className='root-layout'>
-  <Header />
-  <Switch>
-    <Route key={'root'} exact path={'/'} component={Home} />
-    <Route key={'about'} exact path={'/about'} component={About} />
-    <Route key={'blog'} exact path={'/blog'} component={Blog} />
-    <Route key={'404'} component={DefaultPage} />
-  </Switch>
-</div>
+  <div className='root-layout'>
+    <Header />
+    <Switch>
+      <Route key={'root'} exact path={'/'} component={Home} />
+      <Route key={'about'} exact path={'/about'} component={About} />
+      <Route key={'blog'} exact path={'/blog'} component={Blog} />
+      <Route key={'404'} component={DefaultPage} />
+    </Switch>
+  </div>
 
 export default App
