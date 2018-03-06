@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM, { hydrate } from 'react-dom'
+import { hydrate } from 'react-dom'
 import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 import { BrowserRouter } from 'react-router-dom'
@@ -24,7 +24,7 @@ const render = () => {
   const store = configureStore(preloadedState || initialState, reactDevTools)
 
   // TODO: Move browser detection to somewhere better.
-  const browser = detect();
+  const browser = detect()
   switch (browser && browser.name) {
     case 'chrome':
       compareVersions(browser.version, '62') >= 0 ? console.log('Style: Grid') : console.log('Style: Old')
@@ -42,7 +42,7 @@ const render = () => {
       compareVersions(browser.version, '10.3') >= 0 ? console.log('Style: Grid') : console.log('Style: Old')
       break
     default:
-      console.log('not supported');
+      console.log('not supported')
   }
 
   // store.dispatch(someActionToDoWithSettingAGlobalStyleConfig)

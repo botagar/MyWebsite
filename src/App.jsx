@@ -11,9 +11,9 @@ const App = () =>
 <div className='root-layout'>
   <Header />
   <Switch>
-    <Route key={'root'} path={'/'} component={Home} exact />
-    <Route key={'about'} path={'/about'} component={About} exact={true} />
-    <Route key={'blog'} path={'/blog'} component={Blog} exact={true} />
+    <Route key={'root'} exact path={'/'} component={Home} />
+    <Route key={'about'} exact path={'/about'} component={About} />
+    <Route key={'blog'} exact path={'/blog'} component={Blog} />
     <Route key={'404'} component={DefaultPage} />
   </Switch>
 </div>

@@ -1,7 +1,6 @@
 var webpack = require('webpack')
 var path = require('path')
 
-var SRC = path.resolve(__dirname, 'src')
 var DIST = path.resolve(__dirname, 'dist')
 
 var reactConfig = {
@@ -52,7 +51,7 @@ var bffConfig = {
   target: 'node',
 
   node: {
-    __dirname: false,
+    __dirname: false
   },
 
   entry: [
