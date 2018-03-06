@@ -10,7 +10,7 @@ var reactConfig = {
 
   entry: [
     'react-hot-loader/patch',
-    './src/main.js'
+    './src/client/main.js'
   ],
 
   output: {
@@ -22,7 +22,7 @@ var reactConfig = {
   devServer: {
     inline: true, // Hot reloading
     port: 8081, // Port which the Dev Server will listen on
-    contentBase: './', // Where the entry to your app is
+    contentBase: './src.client', // Where the entry to your app is
     open: true, // Open site in new browser tab upon command execution
     compress: true,
     historyApiFallback: true
@@ -90,7 +90,7 @@ var bffConfig = {
   },
 
   entry: [
-    './src/server.js'
+    './src/server/server.js'
   ],
 
   output: {

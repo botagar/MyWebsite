@@ -10,14 +10,14 @@
   "exclude": [
     "**/*.spec.js",
     "dist",
-    "src/redux",
-    "src/common/styles/*.js",
+    "src/client/redux",
+    "src/client/common/styles/*.js",
     "**/*.config.js",
-    "src/common/initialState.js"
+    "src/client/common/initialState.js"
   ],
   "include": [
-    "src/*/*.js",
-    "src/*/*.jsx"
+    "src/client/*/*.js",
+    "src/client/*/*.jsx"
   ],
   "reporter": [
     "lcov",

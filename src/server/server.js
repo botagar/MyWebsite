@@ -7,9 +7,9 @@ import { StaticRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import cheerio from 'cheerio'
 
-import configureStore from '../src/redux/configureStore'
-import emptyState from '../src/common/initialState'
-import App from '../src/App.jsx'
+import configureStore from '../client/redux/configureStore'
+import emptyState from '../client/common/initialState'
+import App from '../client/App.jsx'
 
 const app = Express()
 const port = 3000

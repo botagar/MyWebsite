@@ -3,7 +3,9 @@ import React from 'react'
 import contentContainerSize from '../common/styles/contentContainer'
 import SocialMediaButton from './socialButton.component.jsx'
 
-import '../../media/images/forrest-in-morning.jpg'
+import linkedInIcon from '../../../media/images/In-2C-128px-TM.png'
+import githubIcon from '../../../media/images/GitHub-Mark-120px-plus.png'
+import twitterIcon from '../../../media/images/Twitter_Logo_WhiteOnBlue.png'
 
 const contentContainerStyle = {
   ...contentContainerSize,
@@ -27,9 +29,9 @@ const Home = (props) =>
     <div style={contentStyle}>
       <h1 style={headingStyle}>John A. Geddes</h1>
       <h2 style={subHeadingStyle}>Developer | Infrastructure | Automation</h2>
-      <SocialMediaButton imgSrc='media/images/In-2C-128px-TM.png' link='https://www.linkedin.com/in/john-geddes-43835467/' alt='Find me on Linked In' />
-      <SocialMediaButton imgSrc='media/images/GitHub-Mark-120px-plus.png' link='https://github.com/botagar/' alt='Follow me on Github' />
-      <SocialMediaButton imgSrc='media/images/Twitter_Logo_WhiteOnBlue.png' link='https://twitter.com/91Geddes' alt='Follow me on Twitter' />
+      <SocialMediaButton imgSrc={linkedInIcon} link='https://www.linkedin.com/in/john-geddes-43835467/' alt='Find me on Linked In' />
+      <SocialMediaButton imgSrc={githubIcon} link='https://github.com/botagar/' alt='Follow me on Github' />
+      <SocialMediaButton imgSrc={twitterIcon} link='https://twitter.com/91Geddes' alt='Follow me on Twitter' />
     </div>
   </section>
 
