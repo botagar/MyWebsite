@@ -1,6 +1,7 @@
 import React from 'react'
 import _ from 'underscore'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 
 import NavLink from './navLink.component.jsx'
 
@@ -28,6 +29,14 @@ const NavBarInGrid = styled.div`
 const NavLinks = styled.ul`
   display: flex;
   justify-content: space-evenly;
+
+  ${breakpoint('mobile')`
+    width: 100vw;
+  `}
+
+  ${breakpoint('tablet')`
+    width: auto;
+  `}
 `
 const NavLinkContainer = styled.li`
   list-style-type: none;
