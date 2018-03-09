@@ -23,8 +23,8 @@ const render = () => {
   const appContainer = document.getElementById('app')
   const store = configureStore(preloadedState || initialState, reactDevTools)
 
-  let browserState = detectBrowserCapabilities()
-  console.debug(browserState)
+  let browserCapabilities = detectBrowserCapabilities()
+  console.debug(browserCapabilities)
   // store.dispatch(someActionToDoWithSettingAGlobalStyleConfig)
 
   hydrate(

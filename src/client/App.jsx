@@ -2,6 +2,7 @@ import React from 'react'
 import { Route, Switch, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 
 import Header from './header/container.jsx'
 import Home from './home/container.jsx'
@@ -48,13 +49,24 @@ class _App extends React.Component {
 
 const AppRoot = styled.div`
   display: grid;
-  grid-template-columns: [left-margin] 10vw [center-content-col] auto [right-margin] 10vw;
   grid-template-rows: [header] auto [center-content-row] auto;
   height: 100vh;
   background-image: url('${props => props.backgroundImg}');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+
+  ${breakpoint('mobile')`
+    grid-template-columns: [center-content-col] auto;
+  `}
+
+  ${breakpoint('tablet')`
+    grid-template-columns: [left-margin] 2.5vw [center-content-col] auto [right-margin] 2.5vw;
+  `}
+
+  ${breakpoint('desktop')`
+    grid-template-columns: [left-margin] 10vw [center-content-col] auto [right-margin] 10vw;
+  `}
 `
 
 const mapStateToProps = state => {
