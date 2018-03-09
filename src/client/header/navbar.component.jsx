@@ -22,16 +22,16 @@ const NavBar = ({navLinks}) =>
   </NavBarInGrid>
 
 const NavBarInGrid = styled.div`
-  grid-column: center-header-col / span 1
-  grid-row: header / span 1
+  grid-column: center-header-col / span 1;
+  grid-row: header / span 1;
 `
 const NavLinks = styled.ul`
-  display: flex
-  justify-content: space-evenly
+  display: flex;
+  justify-content: space-evenly;
 `
 const NavLinkContainer = styled.li`
-  list-style-type: none
-  display: inline-block
+  list-style-type: none;
+  display: inline-block;
 `
 
 export default NavBar

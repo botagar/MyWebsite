@@ -9,17 +9,19 @@ const NavigationLink = ({uri, image, altText, displayText}) =>
   </StyledNavLink>
 
 const NavLinkText = styled.p`
-  margin-top: 1.5vh
-  margin-bottom: 1.5vh
-  -webkit-text-stroke: 1px black
+  margin-top: 1.5vh;
+  margin-bottom: 1.5vh;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
 `
 const NavLinkImg = styled.img`
-  maxWidth: 100%
-  maxHeight: 100%
-  position: relative
+  maxWidth: 100%;
+  maxHeight: 100%;
+  position: relative;
 `
 const StyledNavLink = styled(NavLink)`
-  display: block
+  display: block;
 `
 
 export default NavigationLink

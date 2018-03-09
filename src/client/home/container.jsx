@@ -29,27 +29,33 @@ class Home extends React.Component {
   render () {
     return (
       <MainContentContainer>
-        <div>
+        <ContentSection>
           <Title>John A. Geddes</Title>
           <SubTitle>Developer | Infrastructure | Automation</SubTitle>
           <SocialMediaButton imgSrc={linkedInIcon} link='https://www.linkedin.com/in/john-geddes-43835467/' alt='Find me on Linked In' />
           <SocialMediaButton imgSrc={githubIcon} link='https://github.com/botagar/' alt='Follow me on Github' />
           <SocialMediaButton imgSrc={twitterIcon} link='https://twitter.com/91Geddes' alt='Follow me on Twitter' />
-        </div>
+        </ContentSection>
       </MainContentContainer>
     )
   }
 }
 
 const MainContentContainer = ContentContainer.extend`
-  text-align: center
-  align-items: center
+  text-align: center;
+  align-items: center;
+  justify-content: center;  
+`
+const ContentSection = styled.div`
+  background-color: rgba(255,255,255,0.8);
+  padding: 3em 7em;
+  border-radius: 15px 50px;
 `
 const Title = styled.h1`
-  margin-bottom: 5vh
+  margin-bottom: 5vh;
 `
 const SubTitle = styled.h2`
-  margin-bottom: 5vh
+  margin-bottom: 5vh;
 `
 
 
