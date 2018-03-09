@@ -10,7 +10,7 @@ const contentContainerStyle = {
 
 const PageNotFound = () =>
   <div style={contentContainerStyle}>
-    <h1>Uh Oh... You've gotten lost!</h1>
+    <h1>You're Lost! Go Home.</h1>
   </div>
 
 export default PageNotFound
