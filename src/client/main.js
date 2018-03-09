@@ -6,7 +6,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import App from './App.jsx'
 
-import initialState from './shared/initialState'
+import initialState from './redux/initialState'
 import configureStore from './redux/configureStore'
 import detectBrowserCapabilities from './shared/detectBrowser'
 

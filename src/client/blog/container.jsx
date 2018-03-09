@@ -17,13 +17,13 @@ class BlogPage extends React.Component {
       error: false,
       posts: []
     }
-    this.events = {
+    this.actions = {
       requestLatestPosts: props.requestLatestPosts
     }
   }
 
   componentWillMount () {
-    this.events.requestLatestPosts()
+    this.actions.requestLatestPosts()
   }
 
   componentWillReceiveProps (nextProps) {
