@@ -3,7 +3,6 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-import ErrorBoundary from './shared/errorBoundary'
 import Header from './header/container.jsx'
 import Home from './home/container.jsx'
 import Blog from './blog/container.jsx'
@@ -25,7 +24,7 @@ class _App extends React.Component {
   componentWillReceiveProps (nextProps) {
     this.setState((prevState, props) => {
       return {
-        styling:{
+        styling: {
           backgroundImg: props.backgroundImg
         }
       }

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux'
 import { AppContainer } from 'react-hot-loader'
 import { BrowserRouter } from 'react-router-dom'
 
+import ErrorBoundary from './shared/errorBoundary'
 import App from './App.jsx'
 
 import initialState from './redux/initialState'
@@ -28,11 +29,13 @@ const render = () => {
 
   hydrate(
     <AppContainer>
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>
+      <ErrorBoundary>
+        <Provider store={store}>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </Provider>
+      </ErrorBoundary>
     </AppContainer>,
     appContainer
   )
