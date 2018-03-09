@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import ContentContainer from '../common/styles/contentContainer'
+import ContentContainer from '../shared/styles/contentContainer'
 import SocialMediaButton from './socialButton.component.jsx'
 
 import linkedInIcon from '../../../media/images/In-2C-128px-TM.png'

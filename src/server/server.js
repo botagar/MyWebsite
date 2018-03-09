@@ -9,7 +9,7 @@ import { Provider } from 'react-redux'
 import cheerio from 'cheerio'
 
 import configureStore from '../client/redux/configureStore'
-import emptyState from '../client/common/initialState'
+import emptyState from '../client/shared/initialState'
 import App from '../client/App.jsx'
 
 const app = Express()

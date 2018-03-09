@@ -1,6 +1,6 @@
 import React from 'react'
 
-import contentContainerSize from '../common/styles/contentContainer'
+import contentContainerSize from '../shared/styles/contentContainer'
 
 const contentContainerStyle = {
   ...contentContainerSize,

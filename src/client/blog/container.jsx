@@ -2,7 +2,7 @@ import _ from 'underscore'
 import React from 'react'
 import { connect } from 'react-redux'
 
-import contentContainerSize from '../common/styles/contentContainer'
+import contentContainerSize from '../shared/styles/contentContainer'
 import { fetchBlogPosts } from './actions'
 
 const contentContainerStyle = {

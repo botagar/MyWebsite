@@ -8,13 +8,13 @@
   "functions": 0,
   "branches": 0,
   "exclude": [
-    "**/*.spec.js",
     "dist",
+    "**/*.spec.js",
+    "**/*.config.js",
     "src/client/main.js",
     "src/client/redux",
-    "src/client/common/styles/*.js",
-    "**/*.config.js",
-    "src/client/common/initialState.js"
+    "src/client/shared/styles/*.js",
+    "src/client/shared/initialState.js"
   ],
   "include": [
     "src/client/**/*.js",
