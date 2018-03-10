@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint'
 
 import ContentContainer from '../shared/styles/contentContainer'
 import SocialMediaButton from './socialButton.component.jsx'
@@ -48,11 +49,28 @@ const MainContentContainer = ContentContainer.extend`
 `
 const ContentSection = styled.div`
   background-color: rgba(255,255,255,0.8);
-  padding: 3em 7em;
   border-radius: 15px 50px;
+
+  ${breakpoint('mobile')`
+    padding: 5vh 2vw;
+    margin: 1vh 5vw;
+  `}
+
+  ${breakpoint('tablet')`
+    padding: 5vh 10vw;
+    margin: 0;
+  `}
 `
 const Title = styled.h1`
   margin-bottom: 5vh;
+
+  ${breakpoint('mobile')`
+    font-size: 4em
+  `}
+
+  ${breakpoint('tablet')`
+    font-size: 6em
+  `}
 `
 const SubTitle = styled.h2`
   margin-bottom: 5vh;
