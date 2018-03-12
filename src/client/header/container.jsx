@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import styled from 'styled-components'
 import breakpoint from 'styled-components-breakpoint'
 
@@ -7,8 +8,10 @@ import NavConfig from './navLinks.config.js'
 
 const Header = () =>
   <HeaderGrid>
-    <NavBar navLinks={NavConfig} />
+    <RoutedNavBar />
   </HeaderGrid>
+
+const RoutedNavBar = withRouter(props => <NavBar navLinks={NavConfig} activeLink={props.location.pathname}/>)
 
 const HeaderGrid = styled.header`
   display: grid;

@@ -3,11 +3,18 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import breakpoint from 'styled-components-breakpoint'
 
-const NavigationLink = ({uri, image, altText, displayText}) =>
-  <StyledNavLink to={uri} activeClassName='active'>
-    { image ? <NavLinkImg src={image} alt={altText} style={NavImgStyle} /> : '' }
-    <NavLinkText>{displayText}</NavLinkText>
-  </StyledNavLink>
+const NavigationLink = ({uri, image, altText, displayText, active}) => {
+  let _NavLinkText = NavLinkText
+  if (active) { _NavLinkText = ActiveNavlinkText }
+
+  return (
+    <StyledNavLink to={uri} >
+      { image ? <NavLinkImg src={image} alt={altText} style={NavImgStyle} /> : '' }
+      <_NavLinkText>{displayText}</_NavLinkText>
+    </StyledNavLink>
+  )
+}
+  
 
 const NavLinkText = styled.p`
   margin-top: 1.5vh;
@@ -23,6 +30,9 @@ const NavLinkText = styled.p`
     font-size: 1.2em;
   `}
 `
+const ActiveNavlinkText = NavLinkText.extend`
+  color: black;
+`
 const NavLinkImg = styled.img`
   maxWidth: 100%;
   maxHeight: 100%;
@@ -30,6 +40,7 @@ const NavLinkImg = styled.img`
 `
 const StyledNavLink = styled(NavLink)`
   display: block;
+  text-decoration: none;
 `
 
 export default NavigationLink
