@@ -18,7 +18,6 @@ const SunShaft = styled.div`
 	left:0;
 	right:0;
 	bottom:0;	
-  width:70px;
   z-index: -1;
 
   @keyframes sway-small {
@@ -45,35 +44,30 @@ const Ray1 = Ray.extend`
   left: 5px;
   animation: sway-small 6s ease-in-out infinite;
 `
-
 const Ray2 = Ray.extend`
   height:160px;
   width: 20px;
   left: 20px;
   animation: sway 7s ease-in-out infinite;
 `
-
 const Ray3 = Ray.extend`
   height: 150px;
   width: 50px;
   left: 7px;
   animation: sway-small 14s ease-in-out infinite;
 `
-
 const Ray4 = Ray.extend`
   height: 165px;
   width: 14px;
   left: 0px;
   animation: sway 8s ease-in-out infinite;
 `
-
 const Ray5 = Ray.extend`
   height: 140px;
   width: 30px;
   left: 3px;
   animation: sway 5.5s ease-in-out infinite;
 `
-
 const Ray6 = Ray.extend`
   height: 155px;
   width: 25px;

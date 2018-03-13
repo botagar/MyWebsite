@@ -1,13 +1,13 @@
 import _ from 'underscore'
 import React from 'react'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
 
-import contentContainerSize from '../shared/styles/contentContainer'
+import ContentContainer from '../shared/styles/contentContainer'
+import { setPageBackgroundImg } from '../shared/actions'
 import { fetchBlogPosts } from './actions'
 
-const contentContainerStyle = {
-  ...contentContainerSize
-}
+import backgroundImg from '../../../media/images/forrest-in-morning.jpg' 
 
 class BlogPage extends React.Component {
   constructor (props) {
@@ -18,11 +18,13 @@ class BlogPage extends React.Component {
       posts: []
     }
     this.actions = {
+      setPageBackground: props.setPageBackgroundImage,
       requestLatestPosts: props.requestLatestPosts
     }
   }
 
   componentWillMount () {
+    this.actions.setPageBackground(backgroundImg)
     this.actions.requestLatestPosts()
   }
 
@@ -38,17 +40,23 @@ class BlogPage extends React.Component {
 
   render () {
     return (
-      <div style={contentContainerStyle}>
+      <MainContentContainer>
         <p>Bloggo</p>
         { this.state.loading ? <p>Loading</p> : ''}
         { this.state.error ? <p>Error</p> : ''}
         { _.map(this.state.posts, post => {
           return <p key={post.id}>{post.title}</p>
         }) }
-      </div>
+      </MainContentContainer>
     )
   }
 }
+
+const MainContentContainer = ContentContainer.extend`
+  text-align: center;
+  align-items: center;
+  justify-content: center;  
+`
 
 const mapStateToProps = state => {
   return {
@@ -62,6 +70,9 @@ const mapDispatchToEvents = dispatch => {
   return {
     requestLatestPosts: (event) => {
       dispatch(fetchBlogPosts())
+    },
+    setPageBackgroundImage: img => {
+      dispatch(setPageBackgroundImg(img))
     }
   }
 }
