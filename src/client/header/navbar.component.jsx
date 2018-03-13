@@ -11,23 +11,15 @@ const NavBar = ({navLinks, activeLink}) =>
     <NavLinks>
       {
         _.map(navLinks, navLinkInfo => {
-          let active = false
-          let NavLinkStyle = NavLinkContainer
-          if (navLinkInfo.URI === activeLink) {
-            active = true
-            NavLinkStyle = ActiveNavLinkContainer
-          }
-
           return (
-            <NavLinkStyle key={navLinkInfo.name}>
-              { active ? <SunShaft /> : null }
+            <NavLinkContainer key={navLinkInfo.name}>
+              { navLinkInfo.URI === activeLink ? <SunShaft /> : null }
               <NavLink
                 uri={navLinkInfo.URI}
                 image={navLinkInfo.image}
                 displayText={navLinkInfo.name}
-                altText={'placeholder alt text'}
-                active={active} />
-            </NavLinkStyle>
+                altText={'placeholder alt text'} />
+            </NavLinkContainer>
           )
         })
       }
@@ -61,7 +53,6 @@ const NavLinkContainer = styled.li`
 `
 
 const ActiveNavLinkContainer = NavLinkContainer.extend`
-  color: black;
 `
 
 export default NavBar
