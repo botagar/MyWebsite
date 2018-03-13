@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import breakpoint from 'styled-components-breakpoint'
 
 import NavLink from './navLink.component.jsx'
+import SunShaft from './sunshafts.component.jsx'
 
 const NavBar = ({navLinks, activeLink}) =>
   <NavBarInGrid>
@@ -17,14 +18,17 @@ const NavBar = ({navLinks, activeLink}) =>
             NavLinkStyle = ActiveNavLinkContainer
           }
 
-          return <NavLinkStyle key={navLinkInfo.name}>
-            <NavLink
-              uri={navLinkInfo.URI}
-              image={navLinkInfo.image}
-              displayText={navLinkInfo.name}
-              altText={'placeholder alt text'}
-              active={active} />
-          </NavLinkStyle>
+          return (
+            <NavLinkStyle key={navLinkInfo.name}>
+              { active ? <SunShaft /> : null }
+              <NavLink
+                uri={navLinkInfo.URI}
+                image={navLinkInfo.image}
+                displayText={navLinkInfo.name}
+                altText={'placeholder alt text'}
+                active={active} />
+            </NavLinkStyle>
+          )
         })
       }
     </NavLinks>
@@ -52,10 +56,11 @@ const NavLinkContainer = styled.li`
   display: inline-block;
   margin-top: -20px;
   padding: 20px 5px 0 5px;
+  position: relative;
+  z-index: 0;
 `
 
 const ActiveNavLinkContainer = NavLinkContainer.extend`
-  background: white;
   color: black;
 `
 

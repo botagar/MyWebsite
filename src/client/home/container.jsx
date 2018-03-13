@@ -31,7 +31,7 @@ class Home extends React.Component {
     return (
       <MainContentContainer>
         <ContentSection>
-          <Title>John A. Geddes</Title>
+          <Title data-title='John A. Geddes'>John A. Geddes</Title>
           <SubTitle>Developer | Infrastructure | Automation</SubTitle>
           <SocialMediaButton imgSrc={linkedInIcon} link='https://www.linkedin.com/in/john-geddes-43835467/' alt='Find me on Linked In' />
           <SocialMediaButton imgSrc={githubIcon} link='https://github.com/botagar/' alt='Follow me on Github' />

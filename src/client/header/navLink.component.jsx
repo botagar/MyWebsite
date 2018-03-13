@@ -21,6 +21,7 @@ const NavLinkText = styled.p`
   margin-bottom: 1.5vh;
   color: white;
   font-weight: bold;
+  text-shadow: 2px 2px 4px #000000;
 
   ${breakpoint('mobile')`
     font-size: 1em;
@@ -32,6 +33,7 @@ const NavLinkText = styled.p`
 `
 const ActiveNavlinkText = NavLinkText.extend`
   color: black;
+  text-shadow: none;
 `
 const NavLinkImg = styled.img`
   maxWidth: 100%;
