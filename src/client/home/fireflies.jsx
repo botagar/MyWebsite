@@ -25,7 +25,7 @@ class FireFlies extends React.Component {
   render () {
     return (
       <Jar id={'firefly-jar'}>
-        { _.times(1, index => { return <FireFly key={`firefly${index}`} index={index} /> }) }
+        { _.times(10, index => { return <FireFly key={`firefly${index}`} index={index} /> }) }
       </Jar>
     )
   }

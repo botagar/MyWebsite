@@ -7,7 +7,7 @@ class firefly extends React.Component {
     super(props)
     this.state = {
       fireflyIndex: props.index,
-      updateInterval: props.updateInterval || 2000 ,//+ Math.round(Math.random() * 5000),
+      updateInterval: props.updateInterval || 2000 + Math.round(Math.random() * 5000),
       position: {
         x: Math.round(Math.random() * 90) + 5,
         y: Math.round(Math.random() * 90) + 5,
@@ -15,7 +15,9 @@ class firefly extends React.Component {
         py: props.y || Math.round(Math.random() * 90) + 5
       }
     }
-    this.animationState = {}
+    this.animationState = {
+      moveCount: 0
+    }
     this.animationTick = this.animationTick.bind(this)
   }
 
@@ -25,6 +27,7 @@ class firefly extends React.Component {
     var fireflyElement = document.getElementById(`fire-fly-${this.state.fireflyIndex}`)
     var fireflyStyleSheet = _.find(document.styleSheets, styleSheet => { return styleSheet.title === 'firefly-animations'})
     console.log(fireflyElement)
+    this.animationTick()
   }
 
   componentWillUnmount() {
@@ -34,7 +37,8 @@ class firefly extends React.Component {
   animationTick () {
     let ffIndex = this.state.fireflyIndex
     let position = this.state.position
-
+    
+    let moveCount = this.animationState.moveCount
     let currentX = this.animationState.cx || generateRandomPos()
     let currentY = this.animationState.cy || generateRandomPos()
     let destX = generateRandomPos()
@@ -45,25 +49,26 @@ class firefly extends React.Component {
     console.debug(fireflyStyleSheet)
 
     if (fireflyElement && fireflyStyleSheet) {
-      console.debug('updating ff style sheet')
-      let existingAnimationRuleIndex = _.findIndex(fireflyStyleSheet.cssRules, rule => { return rule.name === `firefly-${ffIndex}-move` })
+      let existingAnimationRuleIndex = _.findIndex(fireflyStyleSheet.cssRules, rule => { 
+        return rule.name === `firefly-${ffIndex}-move-${moveCount - 1 < 0 ? 0 : moveCount - 1}` 
+      })
       if (existingAnimationRuleIndex >= 0) {
         fireflyStyleSheet.deleteRule(existingAnimationRuleIndex)
       }
       
       fireflyElement.style.removeProperty('animation')
-      fireflyElement.style.setProperty('animation-play-state', 'unset')
 
-      fireflyStyleSheet.insertRule(`@keyframes firefly-${ffIndex}-move {
-        0% { transform: translate(${currentX}px, ${currentY}px) }
-        100% { transform: translate(${destX}px, ${destY}px) }
+      fireflyStyleSheet.insertRule(`@keyframes firefly-${ffIndex}-move-${moveCount} {
+        0% { transform: translate(${currentX}vw, ${currentY}vh) }
+        100% { transform: translate(${destX}vw, ${destY}vh) }
       }`, 0)
 
-      fireflyElement.style.setProperty('animation', `firefly-${ffIndex}-move ${this.state.updateInterval}ms ease infinite 0s normal forwards`)
+      fireflyElement.style.setProperty('animation', `firefly-${ffIndex}-move-${moveCount} ${this.state.updateInterval}ms ease 1 0s normal forwards`)
       fireflyElement.style.setProperty('animation-play-state', 'running')
 
       this.animationState.cx = destX
       this.animationState.cy = destY
+      this.animationState.moveCount += 1
     }
   }
 
@@ -74,7 +79,7 @@ class firefly extends React.Component {
   }
 }
 
-const generateRandomPos = () => Math.round(Math.random() * 90) + 5
+const generateRandomPos = () => Math.round(Math.random() * 90)
 
 const FireFly = styled.div.attrs({
   ffi: props => props.fireflyIndex,
