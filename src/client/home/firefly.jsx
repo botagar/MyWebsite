@@ -7,12 +7,13 @@ class firefly extends React.Component {
     super(props)
     this.state = {
       fireflyIndex: props.index,
+      fireflyElement: null,
+      fireflyStyleSheet: null,
+      moveCount: 0,
       updateInterval: props.updateInterval || 2000 + Math.round(Math.random() * 5000),
       position: {
-        x: Math.round(Math.random() * 90) + 5,
-        y: Math.round(Math.random() * 90) + 5,
-        px: props.x || Math.round(Math.random() * 90) + 5,
-        py: props.y || Math.round(Math.random() * 90) + 5
+        currentX: props.x || generateRandomPos(),
+        currentY: props.y || generateRandomPos()
       }
     }
     this.animationState = {
@@ -22,11 +23,7 @@ class firefly extends React.Component {
   }
 
   componentDidMount () {
-    console.info(`FF${this.state.fireflyIndex} is set to an update interval of ${this.state.updateInterval}ms`)
     this.interval = setInterval(this.animationTick, this.state.updateInterval)
-    var fireflyElement = document.getElementById(`fire-fly-${this.state.fireflyIndex}`)
-    var fireflyStyleSheet = _.find(document.styleSheets, styleSheet => { return styleSheet.title === 'firefly-animations'})
-    console.log(fireflyElement)
     this.animationTick()
   }
 
@@ -37,54 +34,56 @@ class firefly extends React.Component {
   animationTick () {
     let ffIndex = this.state.fireflyIndex
     let position = this.state.position
-    
-    let moveCount = this.animationState.moveCount
-    let currentX = this.animationState.cx || generateRandomPos()
-    let currentY = this.animationState.cy || generateRandomPos()
+    let fireflyElement = this.state.fireflyElement || tryGetFireflyElement(document, this.state.fireflyIndex)
+    let fireflyStyleSheet = this.state.fireflyStyleSheet || tryGetAnimationSheet(document)
+    let moveCount = this.state.moveCount
     let destX = generateRandomPos()
     let destY = generateRandomPos()
 
-    var fireflyElement = document.getElementById(`fire-fly-${ffIndex}`)
-    var fireflyStyleSheet = _.find(document.styleSheets, styleSheet => { return styleSheet.title === 'firefly-animations'})
-    console.debug(fireflyStyleSheet)
-
     if (fireflyElement && fireflyStyleSheet) {
-      let existingAnimationRuleIndex = _.findIndex(fireflyStyleSheet.cssRules, rule => { 
-        return rule.name === `firefly-${ffIndex}-move-${moveCount - 1 < 0 ? 0 : moveCount - 1}` 
-      })
-      if (existingAnimationRuleIndex >= 0) {
-        fireflyStyleSheet.deleteRule(existingAnimationRuleIndex)
+      let oldKeyframesIndex = tryGetOldAnimationIndex(fireflyStyleSheet, this.state)
+      if (oldKeyframesIndex >= 0) {
+        fireflyStyleSheet.deleteRule(oldKeyframesIndex)
       }
       
       fireflyElement.style.removeProperty('animation')
 
       fireflyStyleSheet.insertRule(`@keyframes firefly-${ffIndex}-move-${moveCount} {
-        0% { transform: translate(${currentX}vw, ${currentY}vh) }
+        0% { transform: translate(${position.currentX}vw, ${position.currentY}vh) }
         100% { transform: translate(${destX}vw, ${destY}vh) }
       }`, 0)
 
-      fireflyElement.style.setProperty('animation', `firefly-${ffIndex}-move-${moveCount} ${this.state.updateInterval}ms ease 1 0s normal forwards`)
-      fireflyElement.style.setProperty('animation-play-state', 'running')
+      fireflyElement.style.setProperty('animation', `firefly-${ffIndex}-move-${moveCount} ${this.state.updateInterval}ms ease 1 0s normal forwards running`)
 
-      this.animationState.cx = destX
-      this.animationState.cy = destY
-      this.animationState.moveCount += 1
+      this.setState((prevState, props) => {
+        return {
+          moveCount: prevState.moveCount + 1,
+          position: {
+            currentX: destX,
+            currentY: destY
+          }
+        }
+      })
     }
   }
 
   render () {
     const ffIndex = this.state.fireflyIndex
-
     return <FireFly id={`fire-fly-${ffIndex}`} fireflyIndex={ffIndex} ui={this.state.updateInterval} />
   }
 }
 
-const generateRandomPos = () => Math.round(Math.random() * 90)
+const generateRandomPos = (scale = 1) => Math.round(Math.random() * 90) * scale
 
-const FireFly = styled.div.attrs({
-  ffi: props => props.fireflyIndex,
-  ui: props => props.ui
-})`
+const tryGetFireflyElement = (document, fireflyIndex) => document.getElementById(`fire-fly-${fireflyIndex}`)
+
+const tryGetAnimationSheet = document => _.find(document.styleSheets, styleSheet => styleSheet.title === 'firefly-animations')
+
+const tryGetOldAnimationIndex = (fireflyStyleSheet, state) => _.findIndex(fireflyStyleSheet.cssRules, rule => { 
+  return rule.name === `firefly-${state.fireflyIndex}-move-${state.moveCount - 1 < 0 ? 0 : state.moveCount - 1}` 
+})
+
+const FireFly = styled.div`
   width: 2px;
   height: 2px;
   position: absolute;
@@ -94,11 +93,5 @@ const FireFly = styled.div.attrs({
   z-index: 1;
   opacity: 1;
 `
-// animation: ${move} ${props => props.ui}ms ease infinite 0s normal forwards;
-// animation-play-state: running;
-// top: ${props => props.top};
-// left: ${props => props.left};
-
-
 
 export default firefly
