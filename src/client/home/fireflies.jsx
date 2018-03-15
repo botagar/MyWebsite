@@ -11,10 +11,21 @@ class FireFlies extends React.Component {
     this.state = {}
   }
 
+  componentWillMount() {
+    let ffStyleSheet = _.find(document.styleSheets, styleSheet => { return styleSheet.title === 'firefly-animations'})
+    if (!ffStyleSheet) {
+      let style = document.createElement('style');
+      style.id = 'firefly-animations'
+      style.type = 'text/css'
+      style.title = 'firefly-animations'
+      document.head.appendChild(style)
+    }
+  }
+
   render () {
     return (
-      <Jar>
-        { _.times(5, index => { return <FireFly key={`firefly${index}`} index={index} /> }) }
+      <Jar id={'firefly-jar'}>
+        { _.times(1, index => { return <FireFly key={`firefly${index}`} index={index} /> }) }
       </Jar>
     )
   }

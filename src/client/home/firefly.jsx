@@ -1,12 +1,13 @@
 import React from 'react'
 import styled, { keyframes } from 'styled-components'
+import _ from 'underscore'
 
 class firefly extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       fireflyIndex: props.index,
-      updateInterval: props.updateInterval || 2000 + Math.round(Math.random() * 5000),
+      updateInterval: props.updateInterval || 2000 ,//+ Math.round(Math.random() * 5000),
       position: {
         x: Math.round(Math.random() * 90) + 5,
         y: Math.round(Math.random() * 90) + 5,
@@ -14,11 +15,16 @@ class firefly extends React.Component {
         py: props.y || Math.round(Math.random() * 90) + 5
       }
     }
+    this.animationState = {}
     this.animationTick = this.animationTick.bind(this)
   }
 
   componentDidMount () {
+    console.info(`FF${this.state.fireflyIndex} is set to an update interval of ${this.state.updateInterval}ms`)
     this.interval = setInterval(this.animationTick, this.state.updateInterval)
+    var fireflyElement = document.getElementById(`fire-fly-${this.state.fireflyIndex}`)
+    var fireflyStyleSheet = _.find(document.styleSheets, styleSheet => { return styleSheet.title === 'firefly-animations'})
+    console.log(fireflyElement)
   }
 
   componentWillUnmount() {
@@ -26,52 +32,53 @@ class firefly extends React.Component {
   }
 
   animationTick () {
-    this.setState((prevState, props) => {
-      let scaledX = Math.round(Math.random() * 90) + 5
-      let scaledY = Math.round(Math.random() * 90) + 5
-      return {
-        position: {
-          x: scaledX,
-          y: scaledY,
-          px: prevState.position.x || scaledX,
-          py: prevState.position.y || scaledY
-        }
+    let ffIndex = this.state.fireflyIndex
+    let position = this.state.position
+
+    let currentX = this.animationState.cx || generateRandomPos()
+    let currentY = this.animationState.cy || generateRandomPos()
+    let destX = generateRandomPos()
+    let destY = generateRandomPos()
+
+    var fireflyElement = document.getElementById(`fire-fly-${ffIndex}`)
+    var fireflyStyleSheet = _.find(document.styleSheets, styleSheet => { return styleSheet.title === 'firefly-animations'})
+    console.debug(fireflyStyleSheet)
+
+    if (fireflyElement && fireflyStyleSheet) {
+      console.debug('updating ff style sheet')
+      let existingAnimationRuleIndex = _.findIndex(fireflyStyleSheet.cssRules, rule => { return rule.name === `firefly-${ffIndex}-move` })
+      if (existingAnimationRuleIndex >= 0) {
+        fireflyStyleSheet.deleteRule(existingAnimationRuleIndex)
       }
-    })
+      
+      fireflyElement.style.removeProperty('animation')
+      fireflyElement.style.setProperty('animation-play-state', 'unset')
+
+      fireflyStyleSheet.insertRule(`@keyframes firefly-${ffIndex}-move {
+        0% { transform: translate(${currentX}px, ${currentY}px) }
+        100% { transform: translate(${destX}px, ${destY}px) }
+      }`, 0)
+
+      fireflyElement.style.setProperty('animation', `firefly-${ffIndex}-move ${this.state.updateInterval}ms ease infinite 0s normal forwards`)
+      fireflyElement.style.setProperty('animation-play-state', 'running')
+
+      this.animationState.cx = destX
+      this.animationState.cy = destY
+    }
   }
 
   render () {
     const ffIndex = this.state.fireflyIndex
-    const position = this.state.position
-    let testStyle = {}
 
-    // testStyle[`--ff${ffIndex}-ptop`] = position.px
-    // testStyle[`--ff${ffIndex}-pleft`] = position.py
-    // testStyle[`--ff${ffIndex}-left`] = position.x
-    // testStyle[`--ff${ffIndex}-top`] = position.y
-    
-    return <FireFly style={testStyle} fireflyIndex={this.state.fireflyIndex} position={this.state.position} ui={this.state.updateInterval} />
+    return <FireFly id={`fire-fly-${ffIndex}`} fireflyIndex={ffIndex} ui={this.state.updateInterval} />
   }
 }
 
-const move = props => {
-  let fireflyIndex = props.ffi
-  return keyframes`
-    0% { -webkit-transform: translateX(var(--ff${fireflyIndex}-pleft)) translateY(var(--ff${fireflyIndex}-ptop)); }
-    100% { -webkit-transform: translateX(var(--ff${fireflyIndex}-left)) translateY(var(--ff${fireflyIndex}-top)); }
-  `
-}
-
-// 0% { -webkit-transform: translateX(${props.pleft}) translateY(${props.ptop}); }
-// 100% { -webkit-transform: translateX(${props.left}) translateY(${props.top}); }
+const generateRandomPos = () => Math.round(Math.random() * 90) + 5
 
 const FireFly = styled.div.attrs({
   ffi: props => props.fireflyIndex,
-  ui: props => props.ui,
-  fftop: props => `${props.position.y}px`,
-  ffleft: props => `${props.position.x}px`,
-  ptop: props => `${props.position.py}px`,
-  pleft: props => `${props.position.px}px`,
+  ui: props => props.ui
 })`
   width: 2px;
   height: 2px;
@@ -81,13 +88,9 @@ const FireFly = styled.div.attrs({
   border-radius: 50% 50%;
   z-index: 1;
   opacity: 1;
-  --ff${props => props.ffi}-left: ${props => props.fftop};
-  --ff${props => props.ffi}-top: ${props => props.ffleft};
-  --ff${props => props.ffi}-pleft: ${props => props.pleft};
-  --ff${props => props.ffi}-ptop: ${props => props.ptop};
-  animation: ${move} ${props => props.ui}ms infinite;
 `
-
+// animation: ${move} ${props => props.ui}ms ease infinite 0s normal forwards;
+// animation-play-state: running;
 // top: ${props => props.top};
 // left: ${props => props.left};
 
