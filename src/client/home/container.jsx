@@ -6,6 +6,7 @@ import breakpoint from 'styled-components-breakpoint'
 import ContentContainer from '../shared/styles/contentContainer'
 import SocialMediaButton from './socialButton.component.jsx'
 import { setPageBackgroundImg } from '../shared/actions'
+import FireFlies from './fireflies.jsx'
 
 import backgroundImg from '../../../media/images/forrest-in-morning.jpg' 
 import linkedInIcon from '../../../media/images/In-2C-128px-TM.png'
@@ -30,6 +31,7 @@ class Home extends React.Component {
   render () {
     return (
       <MainContentContainer>
+        <FireFlies />
         <ContentSection>
           <Title data-title='John A. Geddes'>John A. Geddes</Title>
           <SubTitle>Developer | Infrastructure | Automation</SubTitle>
@@ -50,6 +52,7 @@ const MainContentContainer = ContentContainer.extend`
 const ContentSection = styled.div`
   background-color: rgba(255,255,255,0.8);
   border-radius: 15px 50px;
+  z-index: 1;
 
   ${breakpoint('mobile')`
     padding: 5vh 2vw;

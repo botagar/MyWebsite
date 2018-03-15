@@ -18,6 +18,7 @@ const HeaderGrid = styled.header`
   grid-template-columns: [left-margin-header] auto [center-header-col] auto [right-margin-header] auto;
   grid-column: center-content-col / span 1;
   grid-row: header / span 1;
+  z-index: 2;
 
   ${breakpoint('mobile')`
     grid-template-columns: [center-header-col] auto;
