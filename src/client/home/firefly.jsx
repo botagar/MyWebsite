@@ -32,28 +32,19 @@ class firefly extends React.Component {
   }
 
   animationTick () {
-    let ffIndex = this.state.fireflyIndex
-    let position = this.state.position
     let fireflyElement = this.state.fireflyElement || tryGetFireflyElement(document, this.state.fireflyIndex)
     let fireflyStyleSheet = this.state.fireflyStyleSheet || tryGetAnimationSheet(document)
-    let moveCount = this.state.moveCount
     let destX = generateRandomPos()
     let destY = generateRandomPos()
 
     if (fireflyElement && fireflyStyleSheet) {
-      let oldKeyframesIndex = tryGetOldAnimationIndex(fireflyStyleSheet, this.state)
-      if (oldKeyframesIndex >= 0) {
-        fireflyStyleSheet.deleteRule(oldKeyframesIndex)
-      }
+      removeOldAnimation(this.state, fireflyStyleSheet)
       
       fireflyElement.style.removeProperty('animation')
 
-      fireflyStyleSheet.insertRule(`@keyframes firefly-${ffIndex}-move-${moveCount} {
-        0% { transform: translate(${position.currentX}vw, ${position.currentY}vh) }
-        100% { transform: translate(${destX}vw, ${destY}vh) }
-      }`, 0)
+      fireflyStyleSheet.insertRule(generateAnimationKeyframes(this.state, destX, destY), 0)
 
-      fireflyElement.style.setProperty('animation', `firefly-${ffIndex}-move-${moveCount} ${this.state.updateInterval}ms ease 1 0s normal forwards running`)
+      fireflyElement.style.setProperty('animation', generateAnimationProperty(this.state))
 
       this.setState((prevState, props) => {
         return {
@@ -82,6 +73,24 @@ const tryGetAnimationSheet = document => _.find(document.styleSheets, styleSheet
 const tryGetOldAnimationIndex = (fireflyStyleSheet, state) => _.findIndex(fireflyStyleSheet.cssRules, rule => { 
   return rule.name === `firefly-${state.fireflyIndex}-move-${state.moveCount - 1 < 0 ? 0 : state.moveCount - 1}` 
 })
+
+const generateAnimationKeyframes = (state, destX, destY) => {
+  return `@keyframes firefly-${state.fireflyIndex}-move-${state.moveCount} {
+    0% { transform: translate(${state.position.currentX}vw, ${state.position.currentY}vh) }
+    100% { transform: translate(${destX}vw, ${destY}vh) }
+  }`
+}
+
+const generateAnimationProperty = state => {
+  return `firefly-${state.fireflyIndex}-move-${state.moveCount} ${state.updateInterval}ms ease 1 0s normal forwards running`
+}
+
+const removeOldAnimation = (state, fireflyStyleSheet) => {
+  let oldKeyframesIndex = tryGetOldAnimationIndex(fireflyStyleSheet, state)
+  if (oldKeyframesIndex >= 0) {
+    fireflyStyleSheet.deleteRule(oldKeyframesIndex)
+  }
+}
 
 const FireFly = styled.div`
   width: 2px;

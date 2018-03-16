@@ -16,6 +16,7 @@ var reactConfig = {
 
   output: {
     path: DIST,
+    publicPath: '/',
     filename: 'app.bundle.js',
     sourceMapFilename: '[file].map'
   },
