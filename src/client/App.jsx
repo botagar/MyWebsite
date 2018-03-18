@@ -8,6 +8,7 @@ import Header from './header/container.jsx'
 import Home from './home/container.jsx'
 import Blog from './blog/container.jsx'
 import About from './about/container.jsx'
+import ThreeJsExperiment from './threeJS/main.container.jsx'
 import DefaultPage from './404/container.jsx'
 
 class _App extends React.Component {
@@ -39,6 +40,7 @@ class _App extends React.Component {
         <Switch>
           <Route key={'root'} exact path={'/'} component={Home} />
           <Route key={'about'} exact path={'/about'} component={About} />
+          <Route key={'three'} exact path={'/three'} component={ThreeJsExperiment} />
           <Route key={'blog'} exact path={'/blog'} component={Blog} />
           <Route key={'404'} component={DefaultPage} />
         </Switch>
