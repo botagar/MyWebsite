@@ -21,7 +21,7 @@ class ThreeJsExperiment extends React.Component {
     window.THREE = THREE
     let scene = new THREE.Scene();
     let camera = new THREE.PerspectiveCamera( 70, clientWidth / clientHeight, 0.01, 10 );
-    let renderer = new THREE.WebGLRenderer( { antialias: true } );
+    let renderer = new THREE.WebGLRenderer( { canvas: this.canvas, antialias: true, alpha: true } ); 
     
     camera.position.z = 1
 
@@ -31,6 +31,7 @@ class ThreeJsExperiment extends React.Component {
     let cube = new THREE.Mesh( geometry, material );
     scene.add( cube );
  
+    renderer.setClearColor('#000000', 0)
     renderer.setSize( clientWidth, clientHeight );
 
     this.component.appendChild(renderer.domElement)
@@ -77,7 +78,8 @@ class ThreeJsExperiment extends React.Component {
   render() {
     return (
       <MainContentContainer innerRef={component => { this.component = component }} >
-        <h2>ThreeJS Experiment</h2>
+        <h2 style={{zIndex:1}}>ThreeJS Experiment</h2>
+        <ThreeJsCanvas innerRef={canvasElement => this.canvas = canvasElement} />
       </MainContentContainer>
     )
   }
@@ -87,6 +89,14 @@ const MainContentContainer = ContentContainer.extend`
   text-align: center;
   align-items: center;
   justify-content: center;  
+  position: relative;
+`
+
+const ThreeJsCanvas = styled.canvas`
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
 `
 
 export default ThreeJsExperiment
