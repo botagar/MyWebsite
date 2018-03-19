@@ -3,6 +3,7 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 import breakpoint from 'styled-components-breakpoint'
+import StructuredLog from 'structured-log'
 
 import Header from './header/container.jsx'
 import Home from './home/container.jsx'
@@ -22,6 +23,10 @@ class _App extends React.Component {
   }
 
   componentWillMount () {}
+
+  componentDidMount() {
+    
+  }
 
   componentWillReceiveProps (nextProps) {
     this.setState((prevState, props) => {

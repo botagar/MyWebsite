@@ -6,7 +6,8 @@ import breakpoint from 'styled-components-breakpoint'
 import ContentContainer from '../shared/styles/contentContainer'
 import SocialMediaButton from './socialButton.component.jsx'
 import { setPageBackgroundImg } from '../shared/actions'
-import FireFlies from './fireflies.jsx'
+import FireFlies_CSS from './fireflies.jsx'
+import FireFlyContainer from './fireflyContainer.jsx'
 
 import backgroundImg from '../../../media/images/forrest-in-morning.jpg' 
 import linkedInIcon from '../../../media/images/In-2C-128px-TM.png'
@@ -29,9 +30,12 @@ class Home extends React.Component {
   componentWillReceiveProps (nextProps) {}
 
   render () {
+    let featureToggles = {
+      webgl: false
+    }
     return (
       <MainContentContainer>
-        <FireFlies />
+        { featureToggles.webgl ? <FireFlyContainer /> : <FireFlies_CSS /> }
         <ContentSection>
           <Title data-title='John A. Geddes'>John A. Geddes</Title>
           <SubTitle>Developer | Infrastructure | Automation</SubTitle>
@@ -47,7 +51,8 @@ class Home extends React.Component {
 const MainContentContainer = ContentContainer.extend`
   text-align: center;
   align-items: center;
-  justify-content: center;  
+  justify-content: center;
+  // position: relative;
 `
 const ContentSection = styled.div`
   background-color: rgba(255,255,255,0.8);

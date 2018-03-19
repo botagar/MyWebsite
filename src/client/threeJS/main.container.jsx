@@ -63,8 +63,10 @@ class ThreeJsExperiment extends React.Component {
   }
 
   animate() {
-    this.three.cube.rotation.x += 0.01
-    this.three.cube.rotation.y += 0.01
+    let {cube} = this.three
+    let {clientWidth, clientHeight} = this.component
+    cube.rotation.x += 0.01
+    cube.rotation.y += 0.005
 
     this.renderScene()
     this.frameId = window.requestAnimationFrame(this.animate)
