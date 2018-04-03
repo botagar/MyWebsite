@@ -43,6 +43,7 @@ jobs:
     docker:
       - image: circleci/node:8.9-stretch-browsers
     steps:
+      - checkout
       - run: git tag v0.1.${CIRCLE_BUILD_NUM}
       
 workflows:
