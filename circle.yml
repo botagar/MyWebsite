@@ -44,10 +44,9 @@ jobs:
       - image: circleci/node:8.9-stretch-browsers
     steps:
       - checkout
-      - run: GIT_TAG="v0.1.$CIRCLE_BUILD_NUM-$CIRCLE_BRANCH"
-      - run: git tag "$GIT_TAG"
+      - run: git tag "v0.1.$CIRCLE_BUILD_NUM-$CIRCLE_BRANCH"
       - run: git tag
-      - run: git push origin "$GIT_TAG"
+      - run: git push origin "v0.1.$CIRCLE_BUILD_NUM-$CIRCLE_BRANCH"
       
 workflows:
   version: 2
