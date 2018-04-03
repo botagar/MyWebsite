@@ -8,13 +8,20 @@ jobs:
       - image: circleci/python:3.7-rc-stretch-browsers
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - dependencies-cache-{{ checksum "package.json" }}
+            - dependencies-cache
       - run: yarn install
       - run: yarn build
       - persist_to_workspace:
           root: ~/project
           paths:
             - dist
+      - save_cache:
+          paths:
             - node_modules
+          key: dependencies-cache-{{ checksum "package.json" }}
       - store_artifacts:
           path: dist
 
