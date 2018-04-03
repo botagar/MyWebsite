@@ -35,7 +35,7 @@ class Home extends React.Component {
     }
     return (
       <MainContentContainer>
-        { featureToggles.webgl ? <FireFlyContainer /> : <FireFlies_CSS /> }
+        {/* { featureToggles.webgl ? <FireFlyContainer /> : <FireFlies_CSS /> } */}
         <ContentSection>
           <Title data-title='John A. Geddes'>John A. Geddes</Title>
           <SubTitle>Developer | Infrastructure | Automation</SubTitle>
