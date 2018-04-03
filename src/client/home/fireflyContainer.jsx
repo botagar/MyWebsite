@@ -49,6 +49,7 @@ class FireflyContainer extends React.Component {
   }
 
   start() {
+    log.info('FF has started')
     if (!this.frameId) {
       this.frameId = requestAnimationFrame(this.animate)
     }

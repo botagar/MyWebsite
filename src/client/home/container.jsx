@@ -31,7 +31,7 @@ class Home extends React.Component {
 
   render () {
     let featureToggles = {
-      webgl: false
+      webgl: true
     }
     return (
       <MainContentContainer>

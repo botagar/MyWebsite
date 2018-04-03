@@ -7823,6 +7823,10 @@ strip-outer@^1.0.0:
   dependencies:
     escape-string-regexp "^1.0.2"
 
+structured-log-seq-sink@^0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/structured-log-seq-sink/-/structured-log-seq-sink-0.3.3.tgz#0518acf4b28cf2e525db0bae55a90a2911812174"
+
 structured-log@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/structured-log/-/structured-log-0.2.0.tgz#b9be1794c39d6399f265666b84635a3307611c5b"
