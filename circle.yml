@@ -38,6 +38,10 @@ jobs:
           at: ~/project
       - run: yarn install
       - run: yarn deploy
+
+  tag:
+    steps:
+      - git tag v0.1.${CIRCLE_BUILD_NUM}
       
 workflows:
   version: 2
@@ -49,3 +53,6 @@ workflows:
           requires:
             - build
             - test
+      - tag:
+          requires:
+            - deploy
