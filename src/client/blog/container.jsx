@@ -42,12 +42,10 @@ class BlogPage extends React.Component {
   render () {
     return (
       <MainContentContainer>
-        <p>Bloggo</p>
         { this.state.loading ? <p>Loading</p> : ''}
         { this.state.error ? <p>Error</p> : ''}
-        { _.map(this.state.posts, post => {
-          return <BlogPost key={post.id} content={post} />
-          // return <p key={post.id}>{post.title}</p>
+        { _.map( this.state.posts, post => {
+          return <BlogPost key={ post.id } content={ post } />
         }) }
       </MainContentContainer>
     )
