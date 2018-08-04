@@ -10,6 +10,11 @@ const navLinkConfig = [
     image: ''
   },
   {
+    name: 'Three',
+    URI: '/three',
+    image: ''
+  },
+  {
     name: 'Blog',
     URI: '/blog',
     image: ''

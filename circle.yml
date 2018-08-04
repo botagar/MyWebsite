@@ -8,13 +8,20 @@ jobs:
       - image: circleci/python:3.7-rc-stretch-browsers
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - dependencies-cache-{{ checksum "package.json" }}
+            - dependencies-cache
       - run: yarn install
       - run: yarn build
       - persist_to_workspace:
           root: ~/project
           paths:
             - dist
+      - save_cache:
+          paths:
             - node_modules
+          key: dependencies-cache-{{ checksum "package.json" }}
       - store_artifacts:
           path: dist
 
@@ -38,6 +45,18 @@ jobs:
           at: ~/project
       - run: yarn install
       - run: yarn deploy
+
+  tag:
+    docker:
+      - image: circleci/node:8.9-stretch-browsers
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "4a:81:18:2e:03:80:72:c8:a8:c0:c7:cf:eb:3a:cf:33"
+      - checkout
+      - run: git tag "v0.1.$CIRCLE_BUILD_NUM-$CIRCLE_BRANCH"
+      - run: git tag
+      - run: git push origin "v0.1.$CIRCLE_BUILD_NUM-$CIRCLE_BRANCH"
       
 workflows:
   version: 2
@@ -49,3 +68,6 @@ workflows:
           requires:
             - build
             - test
+      - tag:
+          requires:
+            - deploy

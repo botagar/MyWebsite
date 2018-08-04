@@ -1,30 +1,37 @@
-var webpack = require('webpack')
-var path = require('path')
-var nodeExternals = require('webpack-node-externals')
+const webpack = require('webpack')
+const path = require('path')
+const nodeExternals = require('webpack-node-externals')
 
-var DIST = path.resolve(__dirname, 'dist')
+const DIST = path.resolve(__dirname, 'dist')
+const ENV = process.env.NODE_ENV || 'development'
 
 // TODO: Refactor out module section to be reused between client and server configs
 
 var reactConfig = {
-  mode: 'development',
-  externals: [nodeExternals()],
+  mode: ENV,
+  devtool: 'source-map',
   
   entry: [
     'react-hot-loader/patch',
+    'babel-polyfill',
     './src/client/main.js'
   ],
 
   output: {
     path: DIST,
+    publicPath: '/',
     filename: 'app.bundle.js',
     sourceMapFilename: '[file].map'
+  },
+
+  resolve: {
+    extensions: ['.js', '.json', '.jsx'],    
   },
 
   devServer: {
     inline: true, // Hot reloading
     port: 8081, // Port which the Dev Server will listen on
-    contentBase: './src.client', // Where the entry to your app is
+    contentBase: './src/client', // Where the entry to your app is
     open: true, // Open site in new browser tab upon command execution
     compress: true,
     historyApiFallback: true

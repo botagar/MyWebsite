@@ -1,16 +1,17 @@
 import React from 'react'
+import styled from 'styled-components'
 
-import contentContainerSize from '../shared/styles/contentContainer'
-
-const contentContainerStyle = {
-  ...contentContainerSize,
-  textAlign: 'center',
-  alignItems: 'center'
-}
+import ContentContainer from '../shared/styles/contentContainer'
 
 const PageNotFound = () =>
-  <div style={contentContainerStyle}>
-    <h1>Uh Oh... You've gotten lost!</h1>
-  </div>
+  <MainContentContainer>
+    <h1>You're Lost! Go Home.</h1>
+  </MainContentContainer>
+
+const MainContentContainer = ContentContainer.extend`
+  text-align: center;
+  align-items: center;
+  justify-content: center;  
+`
 
 export default PageNotFound

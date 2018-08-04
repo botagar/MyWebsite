@@ -1,16 +1,30 @@
 import React from 'react'
+import styled from 'styled-components'
 
-import contentContainerSize from '../shared/styles/contentContainer'
+import ContentContainer from '../shared/styles/contentContainer'
 
-const contentContainerStyle = {
-  ...contentContainerSize,
-  textAlign: 'center',
-  alignItems: 'center'
+class About extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {}
+    this.actions = {}
+  }
+
+  componentWillMount () {}
+
+  render () {
+    return (
+      <MainContentContainer>
+        <h1>About ME!</h1>
+      </MainContentContainer>
+    )
+  }
 }
 
-const About = () =>
-  <section style={contentContainerStyle}>
-    <h1>About ME!</h1>
-  </section>
+const MainContentContainer = ContentContainer.extend`
+  text-align: center;
+  align-items: center;
+  justify-content: center;  
+`
 
 export default About
