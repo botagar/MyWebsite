@@ -31,11 +31,11 @@ class Home extends React.Component {
 
   render () {
     let featureToggles = {
-      webgl: true
+      webgl: false
     }
     return (
       <MainContentContainer>
-        {/* { featureToggles.webgl ? <FireFlyContainer /> : <FireFlies_CSS /> } */}
+        { featureToggles.webgl ? <FireFlyContainer /> : <FireFlies_CSS /> }
         <ContentSection>
           <Title data-title='John A. Geddes'>John A. Geddes</Title>
           <SubTitle>Developer | Infrastructure | Automation</SubTitle>

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 
 import ContentContainer from '../shared/styles/contentContainer'
+import BlogPost from './blogpost.jsx'
 import { setPageBackgroundImg } from '../shared/actions'
 import { fetchBlogPosts } from './actions'
 
@@ -45,7 +46,8 @@ class BlogPage extends React.Component {
         { this.state.loading ? <p>Loading</p> : ''}
         { this.state.error ? <p>Error</p> : ''}
         { _.map(this.state.posts, post => {
-          return <p key={post.id}>{post.title}</p>
+          return <BlogPost key={post.id} content={post} />
+          // return <p key={post.id}>{post.title}</p>
         }) }
       </MainContentContainer>
     )
