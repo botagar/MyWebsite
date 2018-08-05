@@ -3,11 +3,10 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import breakpoint from 'styled-components-breakpoint'
 
+import BackgroundScene from './background.component.jsx'
 import ContentContainer from '../shared/styles/contentContainer'
 import SocialMediaButton from './socialButton.component.jsx'
 import { setPageBackgroundImg } from '../shared/actions'
-import FireFlies_CSS from './fireflies.jsx'
-import FireFlyContainer from './fireflyContainer.jsx'
 
 import backgroundImg from '../../../media/images/forrest-in-morning.jpg' 
 import linkedInIcon from '../../../media/images/In-2C-128px-TM.png'
@@ -24,26 +23,16 @@ class Home extends React.Component {
   }
 
   componentWillMount () {
-    this.actions.setPageBackground(backgroundImg)
+    // this.actions.setPageBackground(backgroundImg)
   }
 
   componentWillReceiveProps (nextProps) {}
 
   render () {
-    let featureToggles = {
-      webgl: false
-    }
     return (
-      <MainContentContainer>
-        { featureToggles.webgl ? <FireFlyContainer /> : <FireFlies_CSS /> }
-        <ContentSection>
-          <Title data-title='John A. Geddes'>John A. Geddes</Title>
-          <SubTitle>Developer | Infrastructure | Automation</SubTitle>
-          <SocialMediaButton imgSrc={linkedInIcon} link='https://www.linkedin.com/in/john-geddes-43835467/' alt='Find me on Linked In' />
-          <SocialMediaButton imgSrc={githubIcon} link='https://github.com/botagar/' alt='Follow me on Github' />
-          <SocialMediaButton imgSrc={twitterIcon} link='https://twitter.com/91Geddes' alt='Follow me on Twitter' />
-        </ContentSection>
-      </MainContentContainer>
+      <div>
+        <BackgroundScene />
+      </div>
     )
   }
 }
