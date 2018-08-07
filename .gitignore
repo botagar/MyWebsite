@@ -69,3 +69,4 @@ typings/
 
 dist
 set_aws_secrets.sh
+cypress/videos/*
