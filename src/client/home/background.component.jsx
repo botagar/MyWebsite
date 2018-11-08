@@ -28,6 +28,8 @@ class BackgroundScene extends Component {
   }
 
   render() {
+    let verticalRailsEdgePadding = 75
+    let verticalRailsWidth = 25
     let sceneWidth = this.state.width
     let sceneHeight = this.state.height
     let centerWallWidth = (sceneWidth * 0.7) < 1024 ? 1024 : sceneWidth * 0.7
@@ -36,7 +38,8 @@ class BackgroundScene extends Component {
     return (
       <SceneCanvas>
         <svg width={sceneWidth} height={sceneHeight} >
-
+          <Rail x={verticalRailsEdgePadding} y="0" width={verticalRailsWidth} height="1000" />
+          <Rail x={sceneWidth - verticalRailsEdgePadding} y="0" width={verticalRailsWidth} height="1000" />
         </svg>
       </SceneCanvas>
     )
@@ -53,7 +56,7 @@ const SceneCanvas = styled.div`
 `
 
 const Rail = styled.rect`
-  fill:rgb(0,0,255);
+  fill:rgb(85,85,85);
 `
 
 export default BackgroundScene
