@@ -60,7 +60,7 @@ class _App extends React.Component {
 
 const AppRoot = styled.div`
   display: grid;
-  grid-template-rows: [header] auto [center-content-row] auto;
+  grid-template-rows: [header] 10vh [center-content-row] auto;
   height: 100vh;
   background-image: url('${props => props.backgroundImg}');
   background-size: cover;

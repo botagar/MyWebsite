@@ -10,22 +10,24 @@ const ENV = process.env.NODE_ENV || 'development'
 var reactConfig = {
   mode: ENV,
   devtool: 'source-map',
-  
-  entry: [
-    'react-hot-loader/patch',
-    'babel-polyfill',
-    './src/client/main.js'
-  ],
+
+  entry: {
+    app: [
+      'react-hot-loader/patch',
+      'babel-polyfill',
+      path.join(__dirname, 'src', 'client', 'main.js'),
+    ]
+  },
 
   output: {
     path: DIST,
     publicPath: '/',
-    filename: 'app.bundle.js',
+    filename: '[name].bundle.js',
     sourceMapFilename: '[file].map'
   },
 
   resolve: {
-    extensions: ['.js', '.json', '.jsx'],    
+    extensions: ['.js', '.json', '.jsx'],
   },
 
   devServer: {
@@ -38,49 +40,40 @@ var reactConfig = {
   },
 
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.html$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]'
-            }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]'
           }
-        ]
+        }]
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]'
-            }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]'
           }
-        ]
+        }]
       },
       {
         test: /\.(?:jpg|gif|png)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'media/images'
-            }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'media/images'
           }
-        ]
+        }]
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader'
-          }
-        ]
+        use: [{
+          loader: 'babel-loader'
+        }]
       }
     ]
   },
@@ -110,50 +103,41 @@ var bffConfig = {
   },
 
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.html$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]'
-            }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]'
           }
-        ]
+        }]
       },
       {
         test: /\.css$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]'
-            }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]'
           }
-        ]
+        }]
       },
       {
         test: /\.(?:jpg|gif|png)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {
-              name: '[name].[ext]',
-              outputPath: 'media/images',
-              emitFile: false
-            }
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: '[name].[ext]',
+            outputPath: 'media/images',
+            emitFile: false
           }
-        ]
+        }]
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: [
-          {
-            loader: 'babel-loader'
-          }
-        ]
+        use: [{
+          loader: 'babel-loader'
+        }]
       }
     ]
   }

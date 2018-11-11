@@ -11,7 +11,7 @@ const Header = () =>
     <RoutedNavBar />
   </HeaderGrid>
 
-const RoutedNavBar = withRouter(props => <NavBar navLinks={NavConfig} activeLink={props.location.pathname}/>)
+const RoutedNavBar = withRouter(props => <NavBar navLinks={NavConfig} activeLink={props.location.pathname} />)
 
 const HeaderGrid = styled.header`
   display: grid;
