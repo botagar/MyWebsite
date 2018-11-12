@@ -12,7 +12,7 @@ import ThreeJsExperiment from './threeJS/main.container.jsx'
 import DefaultPage from './404/container.jsx'
 
 class _App extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       styling: {
@@ -21,7 +21,7 @@ class _App extends React.Component {
     }
   }
 
-  componentWillMount () {}
+  componentWillMount() { }
 
   componentDidMount() {
     log.fatal('fatal')
@@ -32,7 +32,7 @@ class _App extends React.Component {
     log.verbose('verbose')
   }
 
-  componentWillReceiveProps (nextProps) {
+  componentWillReceiveProps(nextProps) {
     this.setState((prevState, props) => {
       return {
         styling: {
@@ -42,7 +42,7 @@ class _App extends React.Component {
     })
   }
 
-  render () {
+  render() {
     return (
       <AppRoot backgroundImg={this.state.styling.backgroundImg}>
         <Header />
