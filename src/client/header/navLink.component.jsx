@@ -3,15 +3,18 @@ import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import breakpoint from 'styled-components-breakpoint'
 
-const NavigationLink = ({uri, image, altText, displayText}) => {
+const NavigationLink = ({ link, clickHandler }) => {
+  console.log(link)
+  let { URI, image, name, position } = link
+  let altText = 'dont hardcode me!'
   return (
-    <StyledNavLink to={uri} >
-      { image ? <NavLinkImg src={image} alt={altText} style={NavImgStyle} /> : '' }
-      <NavLinkText>{displayText}</NavLinkText>
+    <StyledNavLink to={URI} onClick={clickHandler} >
+      {image ? <NavLinkImg src={image} alt={altText} style={NavImgStyle} /> : ''}
+      <NavLinkText link-id={position}>{name}</NavLinkText>
     </StyledNavLink>
   )
 }
-  
+
 
 const NavLinkText = styled.p`
   margin-top: 1.5vh;

@@ -7,49 +7,57 @@ import NavLink from './navLink.component.jsx'
 class NavBar extends Component {
   constructor({ navLinks, activeLink }) {
     super()
+    this.navLinks = navLinks;
     this.state = {
-      navLinks: {
-        allLinks: navLinks,
-        layout: {
-          onTheLeft: [],
-          inTheMiddle: navLinks.find(linkUnderInspection => linkUnderInspection.URI === activeLink),
-          onTheRight: navLinks
-        }
-      }
+      activeLink: navLinks.find(link => link.URI === activeLink)
     }
+
+    this.handleLinkClicked = this.handleLinkClicked.bind(this)
+  }
+
+  handleLinkClicked(event) {
+    console.log('Link clicked:', event.target.textContent)
+    this.setState({
+      activeLink: this.navLinks.find(link => link.name === event.target.textContent)
+    })
+  }
+
+  componentWillMount() {
+    console.log(this.state.activeLink)
+    console.log(this.navLinks)
   }
 
   render() {
-    console.log(this.state.navLinks)
+    console.log('state', this.state)
     return (
       <NavLinks>
         <NavLinksLeft>
           {
-            this.state.navLinks.layout.onTheLeft.map(link => 
-              <NavLink
-                uri={link.URI}
-                image={link.image}
-                displayText={link.name}
-                altText={'placeholder alt text'} />
-            )
+            this.navLinks.map(link => {
+              if (link.position < this.state.activeLink.position) {
+                return <NavLink
+                  link={link}
+                  clickHandler={this.handleLinkClicked} />
+              }
+            })
           }
         </NavLinksLeft>
         <SelectedLink>
-          <p>
-            {
-              this.state.navLinks.layout.inTheMiddle.name
-            }
-          </p>
+          {
+            <NavLink
+              link={this.state.activeLink}
+              clickHandler={this.handleLinkClicked} />
+          }
         </SelectedLink>
         <NavLinksRight>
           {
-            this.state.navLinks.layout.onTheRight.map(link => 
-              <NavLink
-                uri={link.URI}
-                image={link.image}
-                displayText={link.name}
-                altText={'placeholder alt text'} />
-            )
+            this.navLinks.map(link => {
+              if (link.position > this.state.activeLink.position) {
+                return <NavLink
+                  link={link}
+                  clickHandler={this.handleLinkClicked} />
+              }
+            })
           }
         </NavLinksRight>
       </NavLinks>
@@ -68,6 +76,7 @@ const NavLinks = styled.nav`
 const SelectedLink = styled.div`
   grid-column: link-center / span 1;
   grid-row: header / span 1;
+  text-align: center;
   border: 1px solid blue;
 `
 
