@@ -15,7 +15,6 @@ const NavigationLink = ({ link, clickHandler }) => {
   )
 }
 
-
 const NavLinkText = styled.p`
   margin-top: 1.5vh;
   margin-bottom: 1.5vh;

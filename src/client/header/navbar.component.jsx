@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import breakpoint from 'styled-components-breakpoint'
 
 import NavLink from './navLink.component.jsx'
 
@@ -16,19 +15,16 @@ class NavBar extends Component {
   }
 
   handleLinkClicked(event) {
-    console.log('Link clicked:', event.target.textContent)
     this.setState({
       activeLink: this.navLinks.find(link => link.name === event.target.textContent)
     })
   }
 
   componentWillMount() {
-    console.log(this.state.activeLink)
-    console.log(this.navLinks)
+    console.log('component will mount')
   }
 
   render() {
-    console.log('state', this.state)
     return (
       <NavLinks>
         <NavLinksLeft>
@@ -66,10 +62,10 @@ class NavBar extends Component {
 }
 
 const NavLinks = styled.nav`
-  grid-column: center-header-col / span 1;
+  grid-column: left-margin-header / span 3;
   grid-row: header / span 1;
   display: grid;
-  grid-template-columns: [links-left] auto [link-center] 20vw [links-right] auto;
+  grid-template-columns: [links-left] 40vw [link-center] 20vw [links-right] 40vw;
   border: 1px solid red;
 `
 

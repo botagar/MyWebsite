@@ -16,7 +16,7 @@ const RoutedNavBar = withRouter(props => <NavBar navLinks={NavConfig} activeLink
 const HeaderGrid = styled.header`
   display: grid;
   grid-template-columns: [left-margin-header] auto [center-header-col] auto [right-margin-header] auto;
-  grid-column: center-content-col / span 1;
+  grid-column: left-margin / span 3;
   grid-row: header / span 1;
   z-index: 2;
 
