@@ -8,7 +8,8 @@ import NavbarLink from './navLink.component.jsx'
 
 Enzyme.configure({ adapter: new Adapter() })
 
-const wrapper = shallow(<NavbarLink uri='' altText='test' />)
+const linkObject = {URI:'', name:''}
+const wrapper = shallow(<NavbarLink link={linkObject} clickHandler={() => null} />)
 
 // TODO: Remove this test when ready. Keeping to serve as a future reference for when I
 // might need to write a component test
