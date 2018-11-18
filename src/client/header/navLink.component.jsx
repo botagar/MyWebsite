@@ -10,17 +10,13 @@ const NavigationLink = ({ link, clickHandler }) => {
   return (
     <StyledNavLink to={URI} onClick={clickHandler} >
       {image ? <NavLinkImg src={image} alt={altText} style={NavImgStyle} /> : ''}
-      <NavLinkText link-id={position}>{name}</NavLinkText>
+      <NavLinkText>{name}</NavLinkText>
     </StyledNavLink>
   )
 }
 
 const NavLinkText = styled.p`
-  margin-top: 1.5vh;
-  margin-bottom: 1.5vh;
-  color: white;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px #000000;
+  color: black;
 
   ${breakpoint('mobile')`
     font-size: 1em;
@@ -38,6 +34,9 @@ const NavLinkImg = styled.img`
 const StyledNavLink = styled(NavLink)`
   display: block;
   text-decoration: none;
+  padding: 6px 5px;
+  border-top: 3px solid black;
+  border-bottom: 3px solid black;
 `
 
 export default NavigationLink

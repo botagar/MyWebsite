@@ -27,17 +27,20 @@ class NavBar extends Component {
   render() {
     return (
       <NavLinks>
-        <NavLinksLeft>
-          {
-            this.navLinks.map(link => {
-              if (link.position < this.state.activeLink.position) {
-                return <NavLink
-                  link={link}
-                  clickHandler={this.handleLinkClicked} />
-              }
-            })
-          }
-        </NavLinksLeft>
+        <LeftSliderSpace>
+          <LeftSlider>
+            <LeftSliderEnd width='50px' height='37px'></LeftSliderEnd>
+            {
+              this.navLinks.map(link => {
+                if (link.position < this.state.activeLink.position) {
+                  return <NavLink
+                    link={link}
+                    clickHandler={this.handleLinkClicked} />
+                }
+              })
+            }
+          </LeftSlider>
+        </LeftSliderSpace>
         <SelectedLink>
           {
             <NavLink
@@ -45,17 +48,25 @@ class NavBar extends Component {
               clickHandler={this.handleLinkClicked} />
           }
         </SelectedLink>
-        <NavLinksRight>
-          {
-            this.navLinks.map(link => {
-              if (link.position > this.state.activeLink.position) {
-                return <NavLink
-                  link={link}
-                  clickHandler={this.handleLinkClicked} />
-              }
-            })
-          }
-        </NavLinksRight>
+        <RightSliderSpace>
+          <RightSlider>
+            {
+              this.navLinks.map(link => {
+                if (link.position > this.state.activeLink.position) {
+                  return <NavLink
+                    link={link}
+                    clickHandler={this.handleLinkClicked} />
+                }
+              })
+            }
+            <RightSliderEnd width='50px' height='37px'>
+              <EndBar d='M 0 1 
+                       C 25,1 15,15 50,15' />
+              <EndBar d='M 0 36 
+                       C 25,36 15,22 50,22' />
+            </RightSliderEnd>
+          </RightSlider>
+        </RightSliderSpace>
       </NavLinks>
     )
   }
@@ -65,31 +76,50 @@ const NavLinks = styled.nav`
   grid-column: left-margin-header / span 3;
   grid-row: header / span 1;
   display: grid;
-  grid-template-columns: [links-left] 40vw [link-center] 20vw [links-right] 40vw;
-  border: 1px solid red;
+  grid-template-columns: [links-left] 45vw [link-center] 10vw [links-right] 45vw;
 `
 
 const SelectedLink = styled.div`
   grid-column: link-center / span 1;
   grid-row: header / span 1;
   text-align: center;
-  border: 1px solid blue;
 `
 
-const NavLinksLeft = styled.ul`
+const LeftSliderSpace = styled.div`
   grid-column: links-left / span 1;
   grid-row: header / span 1;
-  display: flex;
-  justify-content: flex-end;
-  border: 1px solid green;
+  text-align: right;
 `
 
-const NavLinksRight = styled.ul`
+const LeftSlider = styled.div`
+  display: inline-flex;
+  justify-content: flex-end;
+  min-width: 5vmin;
+`
+
+const LeftSliderEnd = styled.svg`
+
+`
+
+const RightSliderSpace = styled.div`
   grid-column: links-right / span 1;
   grid-row: header / span 1;
-  display: flex;
+`
+
+const RightSlider = styled.div`
+  display: inline-flex;
   justify-content: flex-start;
-  border: 1px solid orange;
+  min-width: 5vmin;
+`
+
+const RightSliderEnd = styled.svg`
+
+`
+
+const EndBar = styled.path`
+  fill: none;
+  stroke: black;
+  stroke-width: 3;
 `
 
 export default NavBar
