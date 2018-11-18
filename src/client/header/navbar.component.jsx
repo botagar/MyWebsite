@@ -29,11 +29,15 @@ class NavBar extends Component {
       <NavLinks>
         <LeftSliderSpace>
           <LeftSlider>
-            <LeftSliderEnd width='50px' height='37px'></LeftSliderEnd>
+            <LeftSliderEnd width='50px' height='37px'>
+              <EndBar d='M 49,01 C 25,01 35,15 2,15' />
+              <EndBar d='M 49,36 C 25,36 35,22 2,22' />
+            </LeftSliderEnd>
             {
               this.navLinks.map(link => {
                 if (link.position < this.state.activeLink.position) {
                   return <NavLink
+                    key={`navlink-${link.position}`}
                     link={link}
                     clickHandler={this.handleLinkClicked} />
                 }
@@ -44,6 +48,7 @@ class NavBar extends Component {
         <SelectedLink>
           {
             <NavLink
+              key={`navlink-${this.state.activeLink.position}`}
               link={this.state.activeLink}
               clickHandler={this.handleLinkClicked} />
           }
@@ -54,16 +59,15 @@ class NavBar extends Component {
               this.navLinks.map(link => {
                 if (link.position > this.state.activeLink.position) {
                   return <NavLink
+                    key={`navlink-${link.position}`}
                     link={link}
                     clickHandler={this.handleLinkClicked} />
                 }
               })
             }
             <RightSliderEnd width='50px' height='37px'>
-              <EndBar d='M 0 1 
-                       C 25,1 15,15 50,15' />
-              <EndBar d='M 0 36 
-                       C 25,36 15,22 50,22' />
+              <EndBar d='M 0,01 C 25,01 15,15 48,15' />
+              <EndBar d='M 0,36 C 25,36 15,22 48,22' />
             </RightSliderEnd>
           </RightSlider>
         </RightSliderSpace>
@@ -120,6 +124,7 @@ const EndBar = styled.path`
   fill: none;
   stroke: black;
   stroke-width: 3;
+  stroke-linecap: round;
 `
 
 export default NavBar

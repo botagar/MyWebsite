@@ -62,6 +62,7 @@ const AppRoot = styled.div`
   display: grid;
   grid-template-rows: [header] 5vh [center-content-row] auto;
   height: 100vh;
+  background-color: slategrey;
   background-image: url('${props => props.backgroundImg}');
   background-size: cover;
   background-repeat: no-repeat;
