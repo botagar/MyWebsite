@@ -1,13 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import breakpoint from 'styled-components-breakpoint'
 
 const NavigationLink = ({ link, clickHandler }) => {
-  let { URI, image, name, position } = link
-  let altText = 'dont hardcode me!'
+  let { URI, name } = link
+  let altText = 'dont hard code me!'
   return (
-    <StyledNavLink to={URI} onClick={clickHandler} >
+    <StyledNavLink to={URI} onClick={clickHandler} alt={altText} >
       {name}
     </StyledNavLink>
   )

@@ -29,10 +29,6 @@ class NavBar extends Component {
       <NavLinks>
         <LeftSliderSpace>
           <LeftSlider>
-            <LeftSliderEnd width='50px' height='37px'>
-              <EndBar d='M 49,01 C 25,01 35,15 2,15' />
-              <EndBar d='M 49,36 C 25,36 35,22 2,22' />
-            </LeftSliderEnd>
             {
               this.navLinks.map(link => {
                 if (link.position < this.state.activeLink.position) {
@@ -65,10 +61,6 @@ class NavBar extends Component {
                 }
               })
             }
-            <RightSliderEnd width='50px' height='37px'>
-              <EndBar d='M 0,01 C 25,01 15,15 48,15' />
-              <EndBar d='M 0,36 C 25,36 15,22 48,22' />
-            </RightSliderEnd>
           </RightSlider>
         </RightSliderSpace>
       </NavLinks>
