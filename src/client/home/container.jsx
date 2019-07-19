@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import styled from 'styled-components'
 import breakpoint from 'styled-components-breakpoint'
 
-import BackgroundScene from './background.component.jsx'
 import ContentContainer from '../shared/styles/contentContainer'
 import SocialMediaButton from './socialButton.component.jsx'
 import { setPageBackgroundImg } from '../shared/actions'
@@ -23,7 +22,7 @@ class Home extends React.Component {
   }
 
   componentWillMount () {
-    // this.actions.setPageBackground(backgroundImg)
+    this.actions.setPageBackground(backgroundImg)
   }
 
   componentWillReceiveProps (nextProps) {}
@@ -31,7 +30,6 @@ class Home extends React.Component {
   render () {
     return (
       <div>
-        <BackgroundScene />
       </div>
     )
   }
