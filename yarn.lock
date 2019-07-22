@@ -5893,7 +5893,7 @@ once@^1.3.0, once@^1.3.1, once@^1.4.0:
 
 onetime@^1.0.0:
   version "1.1.0"
-  resolved "http://registry.npmjs.org/onetime/-/onetime-1.1.0.tgz#a1f7838f8314c516f05ecefcbc4ccfe04b4ed789"
+  resolved "https://registry.npmjs.org/onetime/-/onetime-1.1.0.tgz#a1f7838f8314c516f05ecefcbc4ccfe04b4ed789"
 
 onetime@^2.0.0:
   version "2.0.1"
@@ -7722,9 +7722,9 @@ strip-outer@^1.0.0:
   dependencies:
     escape-string-regexp "^1.0.2"
 
-structured-log-seq-sink@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.yarnpkg.com/structured-log-seq-sink/-/structured-log-seq-sink-0.3.3.tgz#0518acf4b28cf2e525db0bae55a90a2911812174"
+structured-log-seq-sink@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/structured-log-seq-sink/-/structured-log-seq-sink-0.4.1.tgz#1199387c6fc2fdb7dcb1f86e31aaf3af4e9a01ba"
 
 structured-log@^0.2.0:
   version "0.2.0"
