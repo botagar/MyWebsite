@@ -32,7 +32,7 @@
     "cheerio": "^1.0.0-rc.2",
     "compare-versions": "^3.1.0",
     "detect-browser": "^2.1.0",
-    "express": "^4.16.2",
+    "express": "^4.17.1",
     "fs": "0.0.2",
     "jsdom": "^11.6.2",
     "mz": "^2.7.0",
