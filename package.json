@@ -27,7 +27,7 @@
   "author": "John Geddes",
   "license": "ISC",
   "dependencies": {
-    "axios": "0.18.0",
+    "axios": "0.18.1",
     "bluebird": "^3.5.1",
     "cheerio": "^1.0.0-rc.2",
     "compare-versions": "^3.1.0",
