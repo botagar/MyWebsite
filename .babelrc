@@ -1,21 +1,24 @@
 {
     "presets": [
-        "react",
-        "env"
+        "@babel/preset-react",
+        [
+            "@babel/env",
+            {
+                "targets": {
+                    "browsers": [
+                        "last 2 versions",
+                        "safari >= 7"
+                    ]
+                },
+                "useBuiltIns": "usage",
+                "corejs": 3,
+            }
+        ]
     ],
     "plugins": [
         "react-hot-loader/babel",
-        "syntax-async-functions",
-        "transform-regenerator",
-        "transform-object-rest-spread"
-    ],
-    "env": {
-        "test": {
-            "plugins": [
-                "syntax-async-functions",
-                "transform-regenerator",
-                "transform-object-rest-spread"
-            ]
-        }
-    }
+        "babel-plugin-styled-components",
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-proposal-class-properties"
+    ]
 }

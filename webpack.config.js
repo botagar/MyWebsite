@@ -1,6 +1,8 @@
 const webpack = require('webpack')
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 const DIST = path.resolve(__dirname, 'dist')
 const ENV = process.env.NODE_ENV || 'development'
@@ -10,20 +12,32 @@ const ENV = process.env.NODE_ENV || 'development'
 var reactConfig = {
   mode: ENV,
   devtool: 'source-map',
+  target: 'web',
 
   entry: {
-    app: [
-      'react-hot-loader/patch',
-      'babel-polyfill',
-      path.join(__dirname, 'src', 'client', 'main.js'),
-    ]
+    hotloader: 'react-hot-loader/patch',
+    main: './src/client/main.js'
   },
 
   output: {
     path: DIST,
     publicPath: '/',
-    filename: '[name].bundle.js',
+    filename: '[name].bundle.[hash:8].js',
+    chunkFilename: '[name].bundle.[contenthash:8].js',
     sourceMapFilename: '[file].map'
+  },
+
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all'
+        }
+      }
+    }
   },
 
   resolve: {
@@ -79,68 +93,71 @@ var reactConfig = {
   },
 
   plugins: [
-    new webpack.NamedModulesPlugin()
+    new CleanWebpackPlugin(), // Will clean the output dist dir
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.HashedModuleIdsPlugin()
   ]
 }
 
-var bffConfig = {
-  target: 'node',
-  externals: [nodeExternals()],
-  mode: 'development',
+// var bffConfig = {
+//   target: 'node',
+//   externals: [nodeExternals()],
+//   mode: 'development',
 
-  node: {
-    __dirname: false
-  },
+//   node: {
+//     __dirname: false
+//   },
 
-  entry: [
-    'babel-polyfill',
-    './src/server/server.js'
-  ],
+//   entry: [
+//     './src/server/server.js'
+//   ],
 
-  output: {
-    path: DIST,
-    filename: 'server.bundle.js'
-  },
+//   output: {
+//     path: DIST,
+//     filename: 'server.bundle.js'
+//   },
 
-  module: {
-    rules: [{
-        test: /\.html$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]'
-          }
-        }]
-      },
-      {
-        test: /\.css$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]'
-          }
-        }]
-      },
-      {
-        test: /\.(?:jpg|gif|png)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'media/images',
-            emitFile: false
-          }
-        }]
-      },
-      {
-        test: /\.jsx?$/,
-        exclude: /node_modules/,
-        use: [{
-          loader: 'babel-loader'
-        }]
-      }
-    ]
-  }
-}
+//   module: {
+//     rules: [{
+//         test: /\.html$/,
+//         use: [{
+//           loader: 'file-loader',
+//           options: {
+//             name: '[name].[ext]'
+//           }
+//         }]
+//       },
+//       {
+//         test: /\.css$/,
+//         use: [{
+//           loader: 'file-loader',
+//           options: {
+//             name: '[name].[ext]'
+//           }
+//         }]
+//       },
+//       {
+//         test: /\.(?:jpg|gif|png)$/,
+//         use: [{
+//           loader: 'file-loader',
+//           options: {
+//             name: '[name].[ext]',
+//             outputPath: 'media/images',
+//             emitFile: false
+//           }
+//         }]
+//       },
+//       {
+//         test: /\.jsx?$/,
+//         exclude: /node_modules/,
+//         use: [{
+//           loader: 'babel-loader'
+//         }]
+//       }
+//     ]
+//   }
+// }
 
-module.exports = [reactConfig, bffConfig]
+// module.exports = [reactConfig, bffConfig]
+module.exports = [reactConfig]

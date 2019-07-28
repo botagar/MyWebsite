@@ -42,10 +42,4 @@ const render = () => {
   )
 }
 
-if (module.hot) {
-  module.hot.accept('./home/home.component.jsx', () => {
-    render()
-  })
-}
-
 render()

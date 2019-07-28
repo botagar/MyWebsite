@@ -1,4 +1,5 @@
-import 'babel-polyfill'
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import axios from 'axios'
 import * as types from './actionTypes'
 import { blogPostsFetched, fetchBlogPostsFailed } from './actions'
