@@ -19,3 +19,14 @@ Run:
 TODO:
 
 *look into this for generic error handling https://stackoverflow.com/questions/34403269/what-is-the-best-way-to-deal-with-a-fetch-error-in-react-redux
+
+
+##General Research
+css diff tool/technique: http://diffee.me/
+Tiffany Rayside awesome showcase: https://codepen.io/tmrDevelops/#
+Text clipping with css: https://codepen.io/dudleystorey/pen/aONdzJ
+Heading Sizes: https://type-scale.com/
+Chris Gannon showcase: https://codepen.io/chrisgannon/#
+SVG Animation Examples: https://www.hongkiat.com/blog/svg-animations/
+
+Looking into webpack dashboard when time is available: https://github.com/FormidableLabs/webpack-dashboard
