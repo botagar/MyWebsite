@@ -4,8 +4,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:8.9-stretch-browsers
-      - image: circleci/python:3.7-rc-stretch-browsers
+      - image: circleci/node:12.7.0-stretch-browsers
+      - image: circleci/python:3.7.4-stretch-browsers
     steps:
       - checkout
       - restore_cache:
@@ -28,7 +28,7 @@ jobs:
   test:
     docker:
       - image: circleci/node:8.9-stretch-browsers
-      - image: circleci/python:3.7-rc-stretch-browsers
+      - image: circleci/python:3.7.4-stretch-browsers
     steps:
       - checkout
       - run: yarn install
@@ -37,8 +37,8 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/node:8.9-stretch-browsers
-      - image: circleci/python:3.7-rc-stretch-browsers
+      - image: circleci/node:12.7.0-stretch-browsers
+      - image: circleci/python:3.7.4-stretch-browsers
     steps:
       - checkout
       - attach_workspace:
@@ -48,7 +48,7 @@ jobs:
 
   tag:
     docker:
-      - image: circleci/node:8.9-stretch-browsers
+      - image: circleci/node:12.7.0-stretch-browsers
     steps:
       - add_ssh_keys:
           fingerprints:
