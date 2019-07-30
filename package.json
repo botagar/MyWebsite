@@ -85,7 +85,7 @@
     "react-monocle": "^0.1.6",
     "react-test-renderer": "16.8.6",
     "redux-mock-store": "^1.5.1",
-    "serverless": "1.48.0",
+    "serverless": "1.48.4",
     "serverless-finch": "2.4.2",
     "standard": "13.0.2",
     "webpack": "4.36.1",
