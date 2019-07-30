@@ -35,12 +35,13 @@ class Home extends React.Component {
   }
 }
 
-const MainContentContainer = ContentContainer.extend`
+const MainContentContainer = styled(ContentContainer)`
   text-align: center;
   align-items: center;
   justify-content: center;
   // position: relative;
 `
+
 const ContentSection = styled.div`
   background-color: rgba(255,255,255,0.8);
   border-radius: 15px 50px;

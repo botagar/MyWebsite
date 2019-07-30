@@ -52,7 +52,7 @@ class BlogPage extends React.Component {
   }
 }
 
-const MainContentContainer = ContentContainer.extend`
+const MainContentContainer = styled(ContentContainer)`
   text-align: center;
   align-items: center;
   justify-content: center;  

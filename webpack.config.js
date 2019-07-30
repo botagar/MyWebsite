@@ -54,15 +54,16 @@ var reactConfig = {
   },
 
   module: {
-    rules: [{
-        test: /\.html$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]'
-          }
-        }]
-      },
+    rules: [
+      // {
+      //   test: /\.html$/,
+      //   use: [{
+      //     loader: 'file-loader',
+      //     options: {
+      //       name: '[name].[ext]'
+      //     }
+      //   }]
+      // },
       {
         test: /\.css$/,
         use: [{
@@ -96,7 +97,10 @@ var reactConfig = {
     new CleanWebpackPlugin(), // Will clean the output dist dir
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.HashedModuleIdsPlugin()
+    new webpack.HashedModuleIdsPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'src/client/index.html'
+    })
   ]
 }
 

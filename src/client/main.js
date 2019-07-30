@@ -12,7 +12,7 @@ import configureStore from './redux/configureStore'
 import detectBrowserCapabilities from './shared/detectBrowser'
 
 import './global'
-import './index.html'
+// import './index.html'
 import './shared/styles/reset.css'
 import './shared/styles/default.css'
 

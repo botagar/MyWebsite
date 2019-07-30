@@ -8,7 +8,7 @@ const PageNotFound = () =>
     <h1>You're Lost! Go Home.</h1>
   </MainContentContainer>
 
-const MainContentContainer = ContentContainer.extend`
+const MainContentContainer = styled(ContentContainer)`
   text-align: center;
   align-items: center;
   justify-content: center;  
