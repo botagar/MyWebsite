@@ -9,6 +9,8 @@ class ThreeJsExperiment extends React.Component {
     super(props)
     this.state = {}
     this.three = {}
+    this.component = React.createRef()
+    this.canvas = React.createRef()
 
     this.start = this.start.bind(this)
     this.stop = this.stop.bind(this)
@@ -16,12 +18,12 @@ class ThreeJsExperiment extends React.Component {
   }
 
   componentDidMount () {
-    let {clientWidth, clientHeight} = this.component
+    let {clientWidth, clientHeight} = this.component.current
     // Expose the global THREE object for use in debugging console
     window.THREE = THREE
     let scene = new THREE.Scene();
     let camera = new THREE.PerspectiveCamera( 70, clientWidth / clientHeight, 0.01, 10 );
-    let renderer = new THREE.WebGLRenderer( { canvas: this.canvas, antialias: true, alpha: true } ); 
+    let renderer = new THREE.WebGLRenderer( { canvas: this.canvas.current, antialias: true, alpha: true } ); 
     
     camera.position.z = 1
 
@@ -34,7 +36,7 @@ class ThreeJsExperiment extends React.Component {
     renderer.setClearColor('#000000', 0)
     renderer.setSize( clientWidth, clientHeight );
 
-    this.component.appendChild(renderer.domElement)
+    this.component.current.appendChild(renderer.domElement)
 
     this.start()
 
@@ -49,7 +51,7 @@ class ThreeJsExperiment extends React.Component {
 
   componentWillUnmount() {
     this.stop()
-    this.component.removeChild(this.three.renderer.domElement)
+    this.component.current.removeChild(this.three.renderer.domElement)
   }
 
   start() {
@@ -64,7 +66,7 @@ class ThreeJsExperiment extends React.Component {
 
   animate() {
     let {cube} = this.three
-    let {clientWidth, clientHeight} = this.component
+    let {clientWidth, clientHeight} = this.component.current
     cube.rotation.x += 0.01
     cube.rotation.y += 0.005
 
@@ -79,9 +81,9 @@ class ThreeJsExperiment extends React.Component {
 
   render() {
     return (
-      <MainContentContainer innerRef={component => { this.component = component }} >
+      <MainContentContainer ref={this.component} >
         <h2 style={{zIndex:1}}>ThreeJS Experiment</h2>
-        <ThreeJsCanvas innerRef={canvasElement => this.canvas = canvasElement} />
+        <ThreeJsCanvas ref={this.canvas} />
       </MainContentContainer>
     )
   }
@@ -99,6 +101,8 @@ const ThreeJsCanvas = styled.canvas`
   top: 0;
   left: 0;
   z-index: 0;
+  width: 100%;
+  heigh: 100%;
 `
 
 export default ThreeJsExperiment
