@@ -1,4 +1,5 @@
-import 'babel-polyfill'
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import Chai, { expect } from 'chai'
 import ChaiThings from 'chai-things'
 import { describe, before, beforeEach, it } from 'mocha'
