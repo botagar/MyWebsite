@@ -18,7 +18,7 @@
     "lint": "standard src/**/**",
     "lint-fix": "standard --fix src/**/**",
     "cleanup": "rm -rf ./dist ./coverage ./.nyc_output ./node_modules; unset AWS_ACCESS_KEY_ID; unset AWS_SECRET_ACCESS_KEY;",
-    "deploy": "serverless client deploy"
+    "deploy": "serverless deploy"
   },
   "repository": {
     "type": "git",
