@@ -14,11 +14,7 @@ import DefaultPage from './404/container.jsx'
 class _App extends React.Component {
   constructor(props) {
     super(props)
-    this.state = {
-      styling: {
-        backgroundImg: props.backgroundImg
-      }
-    }
+    this.state = {}
   }
 
   componentWillMount() { }
@@ -32,19 +28,11 @@ class _App extends React.Component {
     log.verbose('verbose')
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setState((prevState, props) => {
-      return {
-        styling: {
-          backgroundImg: props.backgroundImg
-        }
-      }
-    })
-  }
+  componentWillReceiveProps(nextProps) {}
 
   render() {
     return (
-      <AppRoot backgroundImg={this.state.styling.backgroundImg}>
+      <AppRoot>
         <Header />
         <Switch>
           <Route key={'root'} exact path={'/'} component={Home} />
@@ -62,11 +50,7 @@ const AppRoot = styled.div`
   display: grid;
   grid-template-rows: [header] 5vh [center-content-row] auto;
   height: 100vh;
-  background-color: slategrey;
-  background-image: url('${props => props.backgroundImg}');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
+  background: repeating-linear-gradient(90deg, rgba(167, 167, 167, 0.13) 0px, rgba(167, 167, 167, 0.13) 69px,rgba(143, 143, 143, 0.13) 69px, rgba(143, 143, 143, 0.13) 138px),repeating-linear-gradient(90deg, rgba(77, 77, 77, 0.23) 0px, rgba(77, 77, 77, 0.23) 90px,rgba(24, 24, 24, 0.23) 90px, rgba(24, 24, 24, 0.23) 180px),repeating-linear-gradient(0, rgba(125, 125, 125, 0.22) 0px, rgba(125, 125, 125, 0.22) 62px,rgba(8, 8, 8, 0.22) 62px, rgba(8, 8, 8, 0.22) 124px),repeating-linear-gradient(0, rgba(177, 177, 177, 0.24) 0px, rgba(177, 177, 177, 0.24) 54px,rgba(62, 62, 62, 0.24) 54px, rgba(62, 62, 62, 0.24) 108px),linear-gradient(90deg, hsl(113,0%,3%),hsl(113,0%,3%));
 
   ${breakpoint('mobile')`
     grid-template-columns: [center-content-col] auto;
@@ -82,9 +66,7 @@ const AppRoot = styled.div`
 `
 
 const mapStateToProps = state => {
-  return {
-    backgroundImg: state.Shared.backgroundImg
-  }
+  return {}
 }
 
 const mapDispatchToEvents = dispatch => {
