@@ -29,10 +29,6 @@ class NavBar extends Component {
       <NavLinks>
         <LeftSliderSpace>
           <LeftSlider>
-            <LeftSliderEnd width='50px' height='37px'>
-              <EndBar d='M 49,01 C 25,01 35,15 2,15' />
-              <EndBar d='M 49,36 C 25,36 35,22 2,22' />
-            </LeftSliderEnd>
             {
               this.navLinks.map(link => {
                 if (link.position < this.state.activeLink.position) {
@@ -45,13 +41,13 @@ class NavBar extends Component {
             }
           </LeftSlider>
         </LeftSliderSpace>
-        <SelectedLink>
+        <SelectedLinkSpace>
           {
-            <NavLink
+            <SelectedNavLink
               link={this.state.activeLink}
               clickHandler={this.handleLinkClicked} />
           }
-        </SelectedLink>
+        </SelectedLinkSpace>
         <RightSliderSpace>
           <RightSlider>
             {
@@ -64,10 +60,6 @@ class NavBar extends Component {
                 }
               })
             }
-            <RightSliderEnd width='50px' height='37px'>
-              <EndBar d='M 0,01 C 25,01 15,15 48,15' />
-              <EndBar d='M 0,36 C 25,36 15,22 48,22' />
-            </RightSliderEnd>
           </RightSlider>
         </RightSliderSpace>
       </NavLinks>
@@ -82,7 +74,22 @@ const NavLinks = styled.nav`
   grid-template-columns: [links-left] 45vw [link-center] 10vw [links-right] 45vw;
 `
 
-const SelectedLink = styled.div`
+const SelectedNavLink = styled(NavLink)`
+  font-family: 'Josefin Sans';
+  font-size: 2em;
+  color: #ffdb9e;
+  opacity: 1;
+  text-shadow: 
+    #ff4d00 0 0 112px,
+    #ffa916 0 0 48px,
+    #ef9700 0 0 24px,          
+    #ef9700 0 0 16px,
+    #ef9700 0 0 4px;
+  -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: #ff6e00;
+`
+
+const SelectedLinkSpace = styled.div`
   grid-column: link-center / span 1;
   grid-row: header / span 1;
   text-align: center;
@@ -100,10 +107,6 @@ const LeftSlider = styled.div`
   min-width: 5vmin;
 `
 
-const LeftSliderEnd = styled.svg`
-
-`
-
 const RightSliderSpace = styled.div`
   grid-column: links-right / span 1;
   grid-row: header / span 1;
@@ -113,17 +116,6 @@ const RightSlider = styled.div`
   display: inline-flex;
   justify-content: flex-start;
   min-width: 5vmin;
-`
-
-const RightSliderEnd = styled.svg`
-
-`
-
-const EndBar = styled.path`
-  fill: none;
-  stroke: black;
-  stroke-width: 3;
-  stroke-linecap: round;
 `
 
 export default NavBar
