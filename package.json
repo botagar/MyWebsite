@@ -91,7 +91,7 @@
     "standard": "13.1.0",
     "webpack": "4.39.1",
     "webpack-cli": "3.3.6",
-    "webpack-dev-server": "3.7.2",
+    "webpack-dev-server": "3.8.2",
     "webpack-node-externals": "^1.6.0"
   },
   "standard": {
